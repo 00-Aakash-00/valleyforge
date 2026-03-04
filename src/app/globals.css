@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+	/* Primary - Whites & Grays (60%) */
+	--color-white: #ffffff;
+	--color-white-warm: #fafaf8;
+	--color-white-cool: #f5f7fa;
+	--color-gray-100: #f1f3f5;
+	--color-gray-200: #e9ecef;
+	--color-gray-300: #dee2e6;
+
+	/* Secondary - Dark Text (30%) */
+	--color-black: #0a0a0a;
+	--color-charcoal: #1a1a2e;
+	--color-slate-700: #374151;
+	--color-slate-500: #64748b;
+
+	/* Accent - Red (10%) */
+	--color-vfw-red-50: #fef2f2;
+	--color-vfw-red-600: #c41e2a;
+	--color-vfw-red-700: #a31822;
+	--color-vfw-red-800: #8b131c;
+
+	/* Accent - Navy */
+	--color-vfw-navy-50: #eff6ff;
+	--color-vfw-navy-700: #1b2a4a;
+	--color-vfw-navy-800: #152238;
+	--color-vfw-navy-900: #0f1a2e;
+
+	/* Semantic */
+	--color-success: #16a34a;
+	--color-warning: #eab308;
+	--color-error: #dc2626;
+	--color-info: #2563eb;
+
+	/* Fonts */
+	--font-heading: var(--font-playfair);
+	--font-body: var(--font-source-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+/* Base Styles */
+html {
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: var(--font-body), system-ui, sans-serif;
+	color: var(--color-charcoal);
+	background-color: var(--color-white);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-heading), Georgia, serif;
+}
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Scroll snap for carousels */
+.snap-x {
+	scroll-snap-type: x mandatory;
+}
+.snap-center {
+	scroll-snap-align: center;
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+	outline: 2px solid var(--color-vfw-red-600);
+	outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+	background-color: var(--color-vfw-red-50);
+	color: var(--color-black);
 }
