@@ -8,6 +8,7 @@ import {
 	Target,
 	Wrench,
 } from "lucide-react";
+import Image from "next/image";
 import { CerakoteSection } from "@/components/services/CerakoteSection";
 import { PricingTable } from "@/components/services/PricingTable";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -48,6 +49,7 @@ export default function ServicesPage() {
 			<ServiceHero
 				title="Gunsmith Services"
 				description="Quick, common services — not a full-service machine shop"
+				backgroundImage="/images/hero/hero-services.jpeg"
 			/>
 
 			{services.map((service, i) => {
@@ -88,7 +90,14 @@ export default function ServicesPage() {
 										{isAR ? (
 											<PricingTable items={AR_PRICING} />
 										) : (
-											<div className="aspect-[4/3] rounded-lg bg-gray-200" />
+											<Image
+												src={service.image}
+												alt={service.name}
+												width={800}
+												height={600}
+												sizes="(min-width: 1024px) 50vw, 100vw"
+												className="w-full rounded-lg object-cover"
+											/>
 										)}
 									</div>
 								</div>

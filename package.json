@@ -2,11 +2,13 @@
   "name": "valleyforge",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.17.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "biome check ./src",
+    "typecheck": "tsc --noEmit",
     "lint:fix": "biome check --fix ./src",
     "format": "biome format --write ./src"
   },

@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductGrid } from "@/components/shop/ProductGrid";
 import { Container } from "@/components/ui/Container";
@@ -53,12 +54,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 					<nav aria-label="Breadcrumb" className="mb-6">
 						<ol className="flex items-center gap-1 text-sm text-white/60">
 							<li>
-								<a
+								<Link
 									href="/shop"
-									className="min-h-[44px] inline-flex items-center transition-colors hover:text-white"
+									className="inline-flex min-h-[44px] items-center transition-colors hover:text-white"
 								>
 									Shop
-								</a>
+								</Link>
 							</li>
 							<li>
 								<ChevronRight className="h-4 w-4" />
@@ -80,12 +81,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 					<ProductGrid products={products} />
 
 					<div className="mt-12 text-center">
-						<a
+						<Link
 							href="/shop"
 							className="inline-flex min-h-[44px] items-center text-sm font-semibold uppercase tracking-wider text-vfw-navy-700 transition-colors hover:text-vfw-red-600"
 						>
 							Back to All Products
-						</a>
+						</Link>
 					</div>
 				</Container>
 			</section>

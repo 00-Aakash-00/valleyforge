@@ -1,14 +1,16 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SITE_URL } from "@/lib/constants";
-import { CATEGORIES } from "@/lib/products";
+import { CATEGORIES, hasProductImage } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 import { AddToCartButton } from "./AddToCartButton";
 import { ProductGrid } from "./ProductGrid";
+import { ProductImage } from "./ProductImage";
 
 interface ProductDetailProps {
 	product: Product;
@@ -24,7 +26,7 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 		"@type": "Product",
 		name: product.name,
 		description: product.description,
-		image: `${SITE_URL}${product.image}`,
+		...(hasProductImage(product.image) ? { image: `${SITE_URL}${product.image}` } : {}),
 		sku: product.id,
 		offers: {
 			"@type": "Offer",
@@ -54,23 +56,23 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 					<nav aria-label="Breadcrumb" className="mb-8">
 						<ol className="flex items-center gap-1 text-sm text-slate-500">
 							<li>
-								<a
+								<Link
 									href="/shop"
-									className="min-h-[44px] inline-flex items-center transition-colors hover:text-vfw-red-600"
+									className="inline-flex min-h-[44px] items-center transition-colors hover:text-vfw-red-600"
 								>
 									Shop
-								</a>
+								</Link>
 							</li>
 							<li>
 								<ChevronRight className="h-4 w-4" />
 							</li>
 							<li>
-								<a
+								<Link
 									href={`/shop/${product.category}`}
-									className="min-h-[44px] inline-flex items-center transition-colors hover:text-vfw-red-600"
+									className="inline-flex min-h-[44px] items-center transition-colors hover:text-vfw-red-600"
 								>
 									{categoryName}
-								</a>
+								</Link>
 							</li>
 							<li>
 								<ChevronRight className="h-4 w-4" />
@@ -81,8 +83,15 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 
 					{/* Product layout: 2 columns */}
 					<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-						{/* Image placeholder */}
-						<div className="aspect-square rounded-lg bg-gray-200" />
+						{/* Product image */}
+						<ProductImage
+							product={product}
+							width={800}
+							height={800}
+							sizes="(min-width: 768px) 50vw, 100vw"
+							priority
+							className="aspect-square w-full rounded-lg object-cover"
+						/>
 
 						{/* Details */}
 						<div className="flex flex-col">

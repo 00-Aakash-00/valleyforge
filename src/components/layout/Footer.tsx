@@ -1,4 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import { SocialLinks } from "@/components/shared/SocialLinks";
 import { BUSINESS } from "@/lib/constants";
 import { formatPhone } from "@/lib/utils";
@@ -41,12 +42,12 @@ export function Footer() {
 						<ul className="space-y-2">
 							{SERVICE_LINKS.map((link) => (
 								<li key={link.label}>
-									<a
+									<Link
 										href={link.href}
 										className="text-sm text-white/70 transition-colors hover:text-white"
 									>
 										{link.label}
-									</a>
+									</Link>
 								</li>
 							))}
 						</ul>
@@ -60,12 +61,12 @@ export function Footer() {
 						<ul className="space-y-2">
 							{QUICK_LINKS.map((link) => (
 								<li key={link.label}>
-									<a
+									<Link
 										href={link.href}
 										className="text-sm text-white/70 transition-colors hover:text-white"
 									>
 										{link.label}
-									</a>
+									</Link>
 								</li>
 							))}
 						</ul>

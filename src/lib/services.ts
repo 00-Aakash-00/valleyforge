@@ -14,7 +14,7 @@ export const CLEANING_SERVICES: CleaningService[] = [
 		],
 		description:
 			"Our basic cleaning service includes a field strip, thorough cleaning of all accessible components, proper lubrication, and a function check. Perfect for regular maintenance after range days.",
-		image: "/images/services/basic-cleaning.jpg",
+		image: "/images/services/basic-cleaning.jpeg",
 	},
 	{
 		id: "pro-cleaning",
@@ -32,7 +32,7 @@ export const CLEANING_SERVICES: CleaningService[] = [
 		],
 		description:
 			"Our Pro Cleaning goes beyond a basic field strip. We completely disassemble your firearm and use ultrasonic cleaning technology to remove carbon buildup, grime, and residue from every component. Includes a thorough inspection for wear or damage.",
-		image: "/images/services/pro-cleaning.jpg",
+		image: "/images/services/pro-cleaning.png",
 	},
 ];
 
@@ -50,7 +50,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Laser boresight included",
 			"Sight-Pro universal sight pusher",
 		],
-		image: "/images/services/sight-installation.jpg",
+		image: "/images/services/sight-installation.png",
 	},
 	{
 		id: "scope-mounting",
@@ -65,7 +65,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Laser boresight included",
 			"Ring and base installation",
 		],
-		image: "/images/services/scope-mounting.jpg",
+		image: "/images/services/scope-mounting.jpeg",
 	},
 	{
 		id: "trigger-kits",
@@ -81,7 +81,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Rifle triggers — $75",
 			"Function and safety check",
 		],
-		image: "/images/services/trigger-kits.jpg",
+		image: "/images/services/trigger-kits.jpeg",
 	},
 	{
 		id: "ar-services",
@@ -97,7 +97,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Handguard installation",
 			"Muzzle device installation",
 		],
-		image: "/images/services/ar-services.jpg",
+		image: "/images/services/ar-services.jpeg",
 	},
 	{
 		id: "cerakote",
@@ -113,7 +113,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Custom designs",
 			"Partner: Lawless Coatings",
 		],
-		image: "/images/services/cerakote.jpg",
+		image: "/images/services/cerakote.jpeg",
 	},
 ];
 

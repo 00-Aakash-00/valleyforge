@@ -83,6 +83,6 @@ export function getLocalBusinessJsonLd() {
 			},
 		],
 		priceRange: "$$",
-		image: `${SITE_URL}/images/hero/hero-cleaning-workbench.jpg`,
+		image: `${SITE_URL}/images/hero/hero-main.jpeg`,
 	};
 }

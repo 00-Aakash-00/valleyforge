@@ -1,4 +1,5 @@
 import { ChevronDown, Phone } from "lucide-react";
+import Image from "next/image";
 import { StarRating } from "@/components/shared/StarRating";
 import { VeteranBadge } from "@/components/shared/VeteranBadge";
 import { BUSINESS } from "@/lib/constants";
@@ -7,6 +8,15 @@ import { formatPhone } from "@/lib/utils";
 export function HeroSection() {
 	return (
 		<section className="relative flex min-h-screen items-center bg-vfw-navy-900">
+			<Image
+				src="/images/hero/hero-main.jpeg"
+				alt=""
+				aria-hidden="true"
+				fill
+				priority
+				sizes="100vw"
+				className="object-cover"
+			/>
 			<div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
 			<div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
 				<div className="max-w-2xl text-center lg:text-left">

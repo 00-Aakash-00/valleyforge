@@ -4,6 +4,7 @@ import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "./CartProvider";
+import { ProductImage } from "./ProductImage";
 
 interface CartDrawerProps {
 	open: boolean;
@@ -98,8 +99,14 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 									key={item.product.id}
 									className="flex gap-4 rounded-lg border border-gray-200 p-4"
 								>
-									{/* Image placeholder */}
-									<div className="h-20 w-20 flex-shrink-0 rounded-lg bg-gray-200" />
+									{/* Product image */}
+									<ProductImage
+										product={item.product}
+										width={80}
+										height={80}
+										sizes="80px"
+										className="h-20 w-20 flex-shrink-0 rounded-lg object-cover"
+									/>
 
 									{/* Details */}
 									<div className="flex flex-1 flex-col">

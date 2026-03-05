@@ -1,4 +1,5 @@
 import { CheckCircle, Droplets, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ReviewCard } from "@/components/shared/ReviewCard";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -31,7 +32,11 @@ export default function CleaningServicesPage() {
 
 	return (
 		<>
-			<ServiceHero title="Professional Firearm Cleaning" tagline="Keep it clean. Keep it ready." />
+			<ServiceHero
+				title="Professional Firearm Cleaning"
+				tagline="Keep it clean. Keep it ready."
+				backgroundImage="/images/hero/hero-cleaning.jpeg"
+			/>
 
 			{/* Ultrasonic Cleaning */}
 			<ScrollReveal>
@@ -74,7 +79,14 @@ export default function CleaningServicesPage() {
 				<section className="bg-white-warm py-20 md:py-28">
 					<Container>
 						<div className="grid items-center gap-12 lg:grid-cols-2">
-							<div className="aspect-[4/3] rounded-lg bg-gray-200" />
+							<Image
+								src={basic.image}
+								alt="Basic firearm cleaning service"
+								width={800}
+								height={600}
+								sizes="(min-width: 1024px) 50vw, 100vw"
+								className="w-full rounded-lg object-cover"
+							/>
 							<div>
 								<Badge variant="navy">{basic.badge}</Badge>
 								<h2 className="mt-4 font-heading text-3xl font-bold text-black md:text-4xl">
@@ -129,7 +141,14 @@ export default function CleaningServicesPage() {
 									))}
 								</ul>
 							</div>
-							<div className="order-1 aspect-[4/3] rounded-lg bg-gray-200 lg:order-2" />
+							<Image
+								src={pro.image}
+								alt="Pro deep cleaning service with ultrasonic technology"
+								width={800}
+								height={600}
+								sizes="(min-width: 1024px) 50vw, 100vw"
+								className="order-1 w-full rounded-lg object-cover lg:order-2"
+							/>
 						</div>
 					</Container>
 				</section>

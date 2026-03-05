@@ -334,6 +334,17 @@ export const PRODUCTS: Product[] = [
 	},
 ];
 
+// Keep shop placeholders visible until individual catalog assets are actually added.
+const AVAILABLE_PRODUCT_IMAGE_ASSETS = new Set<string>();
+
+export function hasProductImage(image: string): boolean {
+	if (!image.startsWith("/images/shop/")) {
+		return true;
+	}
+
+	return AVAILABLE_PRODUCT_IMAGE_ASSETS.has(image);
+}
+
 export function getProductsByCategory(category: string): Product[] {
 	return PRODUCTS.filter((p) => p.category === category);
 }

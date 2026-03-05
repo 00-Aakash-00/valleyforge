@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { VeteranBadge } from "@/components/shared/VeteranBadge";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -34,7 +35,14 @@ export function AboutPreview() {
 						</div>
 					</div>
 					<div className="flex justify-center lg:justify-end">
-						<div className="aspect-[4/5] w-full max-w-md rounded-lg bg-gray-200" />
+						<Image
+							src="/images/about/founder-potrait.png"
+							alt="Stephen Kopp — Army veteran and founder of Valley Forge Weaponry"
+							width={600}
+							height={750}
+							sizes="(min-width: 1024px) 28rem, 100vw"
+							className="w-full max-w-md rounded-lg object-cover"
+						/>
 					</div>
 				</div>
 			</Container>
