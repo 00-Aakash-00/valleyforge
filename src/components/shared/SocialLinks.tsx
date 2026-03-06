@@ -18,7 +18,15 @@ function YelpIcon({ className }: { className?: string }) {
 	);
 }
 
-export function SocialLinks({ className, light = false }: { className?: string; light?: boolean }) {
+export function SocialLinks({
+	className,
+	light = false,
+	variant = "default",
+}: {
+	className?: string;
+	light?: boolean;
+	variant?: "default" | "outlined";
+}) {
 	const links = [
 		{ href: BUSINESS.social.instagram, icon: Instagram, label: "Instagram" },
 		{ href: BUSINESS.social.facebook, icon: FacebookIcon, label: "Facebook" },
@@ -36,9 +44,11 @@ export function SocialLinks({ className, light = false }: { className?: string; 
 					aria-label={label}
 					className={cn(
 						"flex h-10 w-10 items-center justify-center rounded-full transition-colors",
-						light
-							? "bg-white/10 text-white hover:bg-white/20"
-							: "bg-gray-100 text-slate-700 hover:bg-gray-200",
+						variant === "outlined"
+							? "border border-gray-200 bg-transparent text-gray-400 hover:border-gray-400 hover:text-vfw-red-600"
+							: light
+								? "bg-white/10 text-white hover:bg-white/20"
+								: "bg-gray-100 text-slate-700 hover:bg-gray-200",
 					)}
 				>
 					<Icon className="h-5 w-5" />

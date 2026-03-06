@@ -1,16 +1,15 @@
-import { CheckCircle, Droplets, MapPin, Phone } from "lucide-react";
+import { CheckCircle, Droplets } from "lucide-react";
 import Image from "next/image";
+import { ServiceBottomCTA } from "@/components/services/ServiceBottomCTA";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ReviewCard } from "@/components/shared/ReviewCard";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BUSINESS } from "@/lib/constants";
 import { createMetadata } from "@/lib/metadata";
 import { CLEANING_REVIEWS } from "@/lib/reviews";
 import { CLEANING_SERVICES } from "@/lib/services";
-import { formatPhone } from "@/lib/utils";
 
 export const metadata = createMetadata({
 	title: "Professional Firearm Cleaning",
@@ -199,34 +198,13 @@ export default function CleaningServicesPage() {
 			</ScrollReveal>
 
 			{/* Bottom CTA */}
-			<section className="bg-vfw-navy-900 py-16 md:py-20">
-				<Container className="text-center">
-					<h2 className="font-heading text-3xl font-bold text-white md:text-4xl">
-						Ready for a Clean Firearm?
-					</h2>
-					<p className="mx-auto mt-4 max-w-xl text-lg text-white/70">
-						Drop off your firearm at our shop inside C2 Tactical. Quick turnaround, fair prices.
-					</p>
-					<div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-						<a
-							href={`tel:${formatPhone(BUSINESS.phone)}`}
-							className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-vfw-red-600 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:bg-vfw-red-700"
-						>
-							<Phone className="h-5 w-5" />
-							Call {BUSINESS.phone}
-						</a>
-						<a
-							href="https://maps.google.com"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="inline-flex min-h-[48px] items-center gap-2 rounded-full border-2 border-white/30 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:border-white/60 hover:bg-white/10"
-						>
-							<MapPin className="h-5 w-5" />
-							Get Directions
-						</a>
-					</div>
-				</Container>
-			</section>
+			<ServiceBottomCTA
+				heading="Ready for a Clean"
+				headingAccent="Firearm?"
+				description="Drop off your firearm at our shop inside C2 Tactical. Quick turnaround, fair prices."
+				accentLabel="INSIDE C2 TACTICAL"
+				accentDescription="Located inside C2 Tactical in North Scottsdale. Open Thursday through Saturday, 10am to 6pm. Walk-ins welcome."
+			/>
 		</>
 	);
 }

@@ -1,8 +1,6 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { SocialLinks } from "@/components/shared/SocialLinks";
-import { BUSINESS } from "@/lib/constants";
-import { formatPhone } from "@/lib/utils";
+import { BUSINESS, SITE_NAME, TAGLINE } from "@/lib/constants";
 
 const SERVICE_LINKS = [
 	{ href: "/cleaning-services", label: "Basic Cleaning" },
@@ -20,102 +18,117 @@ const QUICK_LINKS = [
 	{ href: "/shop", label: "Shop" },
 ];
 
+const COMPANY_LINKS = [
+	{ href: "/#about", label: "About Us" },
+	{ href: "/#contact", label: "Contact" },
+];
+
+const LEGAL_LINKS = [
+	{ href: "/terms", label: "Terms & Conditions" },
+	{ href: "/privacy", label: "Privacy Policy" },
+];
+
+function FooterLinkColumn({
+	title,
+	links,
+}: {
+	title: string;
+	links: { href: string; label: string }[];
+}) {
+	return (
+		<div>
+			<h4 className="text-sm font-medium uppercase tracking-wider text-black">{title}</h4>
+			<ul className="mt-4 space-y-3">
+				{links.map((link) => (
+					<li key={link.label}>
+						<Link
+							href={link.href}
+							className="text-sm font-light text-gray-500 transition-colors hover:text-vfw-red-600"
+						>
+							{link.label}
+						</Link>
+					</li>
+				))}
+			</ul>
+		</div>
+	);
+}
+
+const GIANT_TEXT_CLASSES =
+	"font-bold uppercase text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]";
+
+const BG_IMAGE_STYLE = {
+	backgroundImage: "url('/images/footer-bg.webp')",
+};
+
 export function Footer() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="bg-black text-white">
-			<div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-				<div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-					{/* Brand */}
-					<div>
-						<h3 className="font-heading text-xl font-bold">Valley Forge Weaponry</h3>
-						<p className="mt-2 text-sm italic text-white/60">Keep it clean. Keep it ready.</p>
-						<SocialLinks className="mt-6" light />
+		<footer>
+			{/* Section 1: Image Banner — Mobile (text overlaps boundary) */}
+			<div className="relative sm:hidden">
+				<div className="h-48 overflow-hidden bg-vfw-navy-900">
+					<div className="h-full w-full bg-cover bg-center" style={BG_IMAGE_STYLE} />
+					<div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+				</div>
+				<div
+					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-[10%] select-none px-4 text-center"
+					aria-hidden="true"
+				>
+					<span className={`text-[11vw] leading-[0.95] ${GIANT_TEXT_CLASSES}`}>
+						Valley Forge Weaponry
+					</span>
+				</div>
+			</div>
+
+			{/* Section 1: Image Banner — Desktop (text overlaps into white) */}
+			<div className="relative hidden overflow-hidden bg-vfw-navy-900 sm:block sm:h-56 md:h-64 lg:h-72">
+				<div className="absolute inset-0 bg-cover bg-center" style={BG_IMAGE_STYLE} />
+				<div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40" />
+				<div
+					className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-[14%] select-none text-center"
+					aria-hidden="true"
+				>
+					<span
+						className={`whitespace-nowrap leading-none sm:text-[9vw] md:text-[7vw] lg:text-[6vw] ${GIANT_TEXT_CLASSES}`}
+					>
+						Valley Forge Weaponry
+					</span>
+				</div>
+			</div>
+
+			{/* Section 2: Footer Content */}
+			<div className="bg-white px-4 pt-14 pb-12 sm:px-6 sm:pt-20">
+				<div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 sm:gap-10 md:grid-cols-6">
+					{/* Brand Column */}
+					<div className="col-span-2">
+						<h3 className="font-heading text-xl font-bold text-black">{SITE_NAME}</h3>
+						<p className="mt-2 text-sm italic text-gray-500">{TAGLINE}</p>
+						<SocialLinks className="mt-6" variant="outlined" />
 					</div>
 
 					{/* Services */}
-					<div>
-						<h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/50">
-							Services
-						</h4>
-						<ul className="space-y-2">
-							{SERVICE_LINKS.map((link) => (
-								<li key={link.label}>
-									<Link
-										href={link.href}
-										className="text-sm text-white/70 transition-colors hover:text-white"
-									>
-										{link.label}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
+					<FooterLinkColumn title="Services" links={SERVICE_LINKS} />
 
 					{/* Quick Links */}
-					<div>
-						<h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/50">
-							Quick Links
-						</h4>
-						<ul className="space-y-2">
-							{QUICK_LINKS.map((link) => (
-								<li key={link.label}>
-									<Link
-										href={link.href}
-										className="text-sm text-white/70 transition-colors hover:text-white"
-									>
-										{link.label}
-									</Link>
-								</li>
-							))}
-						</ul>
-					</div>
+					<FooterLinkColumn title="Quick Links" links={QUICK_LINKS} />
 
-					{/* Contact */}
-					<div>
-						<h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-white/50">
-							Contact
-						</h4>
-						<ul className="space-y-3">
-							<li className="flex items-start gap-3 text-sm text-white/70">
-								<MapPin className="mt-0.5 h-4 w-4 shrink-0 text-vfw-red-600" />
-								<span>
-									{BUSINESS.address}
-									<br />
-									{BUSINESS.city}, {BUSINESS.state} {BUSINESS.zip}
-									<br />
-									<span className="text-white/50">({BUSINESS.location})</span>
-								</span>
-							</li>
-							<li>
-								<a
-									href={`tel:${formatPhone(BUSINESS.phone)}`}
-									className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white"
-								>
-									<Phone className="h-4 w-4 shrink-0 text-vfw-red-600" />
-									{BUSINESS.phone}
-								</a>
-							</li>
-							<li>
-								<a
-									href={`mailto:${BUSINESS.email}`}
-									className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white"
-								>
-									<Mail className="h-4 w-4 shrink-0 text-vfw-red-600" />
-									{BUSINESS.email}
-								</a>
-							</li>
-							<li className="flex items-center gap-3 text-sm text-white/70">
-								<Clock className="h-4 w-4 shrink-0 text-vfw-red-600" />
-								{BUSINESS.hours.days}, {BUSINESS.hours.hours}
-							</li>
-						</ul>
-					</div>
+					{/* Company */}
+					<FooterLinkColumn title="Company" links={COMPANY_LINKS} />
+
+					{/* Legal */}
+					<FooterLinkColumn title="Legal" links={LEGAL_LINKS} />
 				</div>
+			</div>
 
-				<div className="mt-12 border-t border-white/10 pt-8 text-center text-xs text-white/40">
-					&copy; {year} {BUSINESS.name}. All rights reserved.
+			{/* Section 3: Copyright Bar */}
+			<div className="border-t border-gray-200 bg-white px-4 py-6 sm:px-6">
+				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
+					<p className="text-xs text-gray-400">
+						&copy; {year} {BUSINESS.name}. All rights reserved.
+					</p>
+					<p className="text-xs text-gray-400">{BUSINESS.name} LLC</p>
 				</div>
 			</div>
 		</footer>
