@@ -3,6 +3,7 @@
 import { Menu, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { BUSINESS } from "@/lib/constants";
 import { cn, formatPhone } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
@@ -18,8 +19,9 @@ export function Navbar() {
 	const pathname = usePathname();
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
+	const { isDesktop } = useBreakpoint();
 	const isHomePage = pathname === "/";
-	const useSolidHeader = !isHomePage || scrolled;
+	const useTransparentDesktopHeader = isHomePage && !scrolled && !menuOpen;
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 50);
@@ -32,20 +34,26 @@ export function Navbar() {
 		setMenuOpen(false);
 	}, [pathname]);
 
+	useEffect(() => {
+		if (isDesktop) {
+			setMenuOpen(false);
+		}
+	}, [isDesktop]);
+
 	return (
 		<>
 			<header
 				className={cn(
-					"fixed top-0 right-0 left-0 z-40 transition-all duration-300",
-					useSolidHeader ? "bg-white/95 shadow-sm backdrop-blur-sm" : "bg-transparent",
+					"fixed top-0 right-0 left-0 z-40 bg-white/95 shadow-sm backdrop-blur-sm transition-all duration-300",
+					useTransparentDesktopHeader && "lg:bg-transparent lg:shadow-none lg:backdrop-blur-none",
 				)}
 			>
-				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
 					<a href="/" className="flex items-center gap-2">
 						<span
 							className={cn(
-								"font-heading text-xl font-bold transition-colors",
-								useSolidHeader ? "text-black" : "text-white",
+								"font-heading text-lg font-bold transition-colors sm:text-xl",
+								useTransparentDesktopHeader ? "text-black lg:text-white" : "text-black",
 							)}
 						>
 							Valley Forge Weaponry
@@ -59,9 +67,9 @@ export function Navbar() {
 								href={link.href}
 								className={cn(
 									"rounded-lg px-4 py-2 text-sm font-semibold uppercase tracking-wider transition-colors",
-									useSolidHeader
-										? "text-charcoal hover:bg-gray-100"
-										: "text-white/90 hover:text-white hover:bg-white/10",
+									useTransparentDesktopHeader
+										? "text-charcoal hover:bg-gray-100 lg:text-white/90 lg:hover:bg-white/10 lg:hover:text-white"
+										: "text-charcoal hover:bg-gray-100",
 								)}
 							>
 								{link.label}
@@ -80,8 +88,8 @@ export function Navbar() {
 						type="button"
 						onClick={() => setMenuOpen(true)}
 						className={cn(
-							"flex h-10 w-10 items-center justify-center rounded-lg lg:hidden",
-							useSolidHeader ? "text-black" : "text-white",
+							"flex h-11 w-11 items-center justify-center rounded-lg lg:hidden",
+							"text-black",
 						)}
 						aria-label="Open menu"
 					>

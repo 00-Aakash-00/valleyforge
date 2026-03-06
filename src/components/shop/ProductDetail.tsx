@@ -50,11 +50,11 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<section className="bg-white py-8">
+			<section className="bg-white pt-36 pb-8 sm:pt-40">
 				<Container>
 					{/* Breadcrumb */}
-					<nav aria-label="Breadcrumb" className="mb-8">
-						<ol className="flex items-center gap-1 text-sm text-slate-500">
+					<nav aria-label="Breadcrumb" className="mb-6 sm:mb-8">
+						<ol className="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm text-slate-500">
 							<li>
 								<Link
 									href="/shop"
@@ -82,7 +82,7 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 					</nav>
 
 					{/* Product layout: 2 columns */}
-					<div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+					<div className="grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-12">
 						{/* Product image */}
 						<ProductImage
 							product={product}
@@ -99,7 +99,7 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 								{categoryName}
 							</Badge>
 
-							<h1 className="font-heading text-3xl font-bold text-charcoal md:text-4xl">
+							<h1 className="font-heading text-2xl font-bold text-charcoal sm:text-3xl md:text-4xl">
 								{product.name}
 							</h1>
 

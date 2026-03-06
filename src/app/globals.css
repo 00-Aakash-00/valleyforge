@@ -39,16 +39,31 @@
 }
 
 /* Base Styles */
+:root {
+	--safe-area-top: env(safe-area-inset-top, 0px);
+	--safe-area-right: env(safe-area-inset-right, 0px);
+	--safe-area-bottom: env(safe-area-inset-bottom, 0px);
+	--safe-area-left: env(safe-area-inset-left, 0px);
+}
+
 html {
+	height: 100%;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
+	min-height: 100vh;
 	font-family: var(--font-body), system-ui, sans-serif;
 	color: var(--color-charcoal);
 	background-color: var(--color-white);
+}
+
+@supports (height: 100dvh) {
+	body {
+		min-height: 100dvh;
+	}
 }
 
 h1,
@@ -100,4 +115,31 @@ h3 {
 ::selection {
 	background-color: var(--color-vfw-red-50);
 	color: var(--color-black);
+}
+
+.safe-top {
+	padding-top: max(1rem, var(--safe-area-top));
+}
+
+.safe-bottom {
+	padding-bottom: max(1rem, var(--safe-area-bottom));
+}
+
+.safe-x {
+	padding-right: max(1rem, var(--safe-area-right));
+	padding-left: max(1rem, var(--safe-area-left));
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+		transition-duration: 0.01ms;
+	}
 }

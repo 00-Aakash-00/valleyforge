@@ -30,19 +30,19 @@ export function ContactCTA() {
 	};
 
 	return (
-		<section id="contact" className="bg-white py-20 md:py-28">
+		<section id="contact" className="scroll-mt-24 bg-white py-16 sm:scroll-mt-28 sm:py-20 md:py-28">
 			<Container>
 				<DashedBorderBox variant="light">
-					<div className="mb-12 text-center">
+					<div className="mb-10 text-center sm:mb-12">
 						<p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-vfw-red-600">
 							GET IN TOUCH
 						</p>
-						<h2 className="font-heading text-3xl font-bold leading-tight text-black md:text-4xl lg:text-5xl">
+						<h2 className="font-heading text-2xl font-bold leading-tight text-black sm:text-3xl md:text-4xl lg:text-5xl">
 							Visit Us or <span className="text-vfw-red-600">Get in Touch</span>
 						</h2>
 					</div>
 
-					<div className="grid gap-12 lg:grid-cols-2">
+					<div className="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12">
 						<div>
 							<ul className="mb-8 space-y-4">
 								<li className="flex items-start gap-3">
@@ -82,7 +82,7 @@ export function ContactCTA() {
 							</ul>
 
 							{submitted ? (
-								<div className="rounded-lg bg-green-50 p-6 text-center">
+								<div className="rounded-lg bg-green-50 p-5 text-center sm:p-6">
 									<p className="text-lg font-semibold text-success">Your email draft is ready</p>
 									<p className="mt-1 text-slate-700">
 										Check your email app to send your message to us.
@@ -148,7 +148,7 @@ export function ContactCTA() {
 							)}
 						</div>
 
-						<div className="space-y-6">
+						<div className="space-y-5 sm:space-y-6">
 							<MapEmbed />
 							<SocialLinks />
 						</div>

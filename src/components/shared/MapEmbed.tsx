@@ -21,7 +21,7 @@ export function MapEmbed() {
 	}, []);
 
 	return (
-		<div ref={ref} className="h-64 w-full overflow-hidden rounded-lg bg-gray-100 md:h-80">
+		<div ref={ref} className="h-56 w-full overflow-hidden rounded-lg bg-gray-100 sm:h-64 md:h-80">
 			{visible && (
 				<iframe
 					title="Valley Forge Weaponry Location"

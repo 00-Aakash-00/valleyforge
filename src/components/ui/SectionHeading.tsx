@@ -16,11 +16,11 @@ export function SectionHeading({
 	light = false,
 }: SectionHeadingProps) {
 	return (
-		<div className={cn("mb-12", centered && "text-center")}>
+		<div className={cn("mb-10 sm:mb-12", centered && "text-center")}>
 			{overline && (
 				<p
 					className={cn(
-						"mb-3 text-xs font-bold uppercase tracking-[0.2em]",
+						"mb-3 text-xs font-bold uppercase tracking-[0.18em] sm:tracking-[0.2em]",
 						light ? "text-white/70" : "text-vfw-red-600",
 					)}
 				>
@@ -29,7 +29,7 @@ export function SectionHeading({
 			)}
 			<h2
 				className={cn(
-					"font-heading text-3xl font-bold leading-tight md:text-4xl lg:text-5xl",
+					"font-heading text-2xl font-bold leading-tight sm:text-3xl md:text-4xl lg:text-5xl",
 					light ? "text-white" : "text-black",
 				)}
 			>
@@ -38,7 +38,7 @@ export function SectionHeading({
 			{description && (
 				<p
 					className={cn(
-						"mx-auto mt-4 max-w-2xl text-lg",
+						"mx-auto mt-4 max-w-2xl text-base leading-relaxed sm:text-lg",
 						light ? "text-white/80" : "text-slate-500",
 					)}
 				>

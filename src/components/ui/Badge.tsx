@@ -17,7 +17,7 @@ export function Badge({ children, variant = "gray", className }: BadgeProps) {
 	return (
 		<span
 			className={cn(
-				"inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider",
+				"inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] sm:text-xs sm:tracking-wider",
 				variantStyles[variant],
 				className,
 			)}

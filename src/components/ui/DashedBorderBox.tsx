@@ -11,13 +11,13 @@ interface DashedBorderBoxProps {
 export function DashedBorderBox({ variant, children, className }: DashedBorderBoxProps) {
 	const isDark = variant === "dark";
 	const borderColor = isDark ? "border-white/25" : "border-vfw-navy-700/25";
-	const extensionClasses = cn("absolute hidden sm:block border-dashed", borderColor);
+	const extensionClasses = cn("absolute hidden lg:block border-dashed", borderColor);
 	const horizontalExtensionClasses = "w-8 2xl:w-20";
 
 	return (
-		<div className={cn("relative overflow-hidden sm:overflow-visible", className)}>
+		<div className={cn("relative overflow-hidden lg:overflow-visible", className)}>
 			{/* Dashed border container */}
-			<div className={cn("relative border border-dashed p-8 sm:p-12 lg:p-16", borderColor)}>
+			<div className={cn("relative border border-dashed p-6 sm:p-10 lg:p-16", borderColor)}>
 				{/* Corner lines extending OUTWARD from each corner */}
 
 				{/* Top-left — horizontal extends left */}

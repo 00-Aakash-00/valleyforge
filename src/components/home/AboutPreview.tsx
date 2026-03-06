@@ -5,7 +5,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function AboutPreview() {
 	return (
-		<section className="bg-white-warm py-20 md:py-28">
+		<section
+			id="about"
+			className="scroll-mt-24 bg-white-warm py-16 sm:scroll-mt-28 sm:py-20 md:py-28"
+		>
 			<Container>
 				<div className="grid items-center gap-12 lg:grid-cols-2">
 					<div>
@@ -15,7 +18,7 @@ export function AboutPreview() {
 							centered={false}
 						/>
 						<VeteranBadge className="mb-6" />
-						<div className="space-y-4 text-lg leading-relaxed text-slate-700">
+						<div className="space-y-4 text-base leading-relaxed text-slate-700 sm:text-lg">
 							<p>
 								Stephen Kopp is an Army veteran and professional gunsmith who founded Valley Forge
 								Weaponry with a simple mission — provide quality firearm cleaning and maintenance
@@ -41,7 +44,7 @@ export function AboutPreview() {
 							width={600}
 							height={750}
 							sizes="(min-width: 1024px) 28rem, 100vw"
-							className="w-full max-w-md rounded-lg object-cover"
+							className="w-full max-w-sm rounded-lg object-cover sm:max-w-md"
 						/>
 					</div>
 				</div>

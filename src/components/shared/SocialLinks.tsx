@@ -34,7 +34,7 @@ export function SocialLinks({
 	];
 
 	return (
-		<div className={cn("flex gap-4", className)}>
+		<div className={cn("flex flex-wrap gap-3 sm:gap-4", className)}>
 			{links.map(({ href, icon: Icon, label }) => (
 				<a
 					key={label}
@@ -43,7 +43,7 @@ export function SocialLinks({
 					rel="noopener noreferrer"
 					aria-label={label}
 					className={cn(
-						"flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+						"flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors md:h-10 md:w-10 md:min-h-0 md:min-w-0",
 						variant === "outlined"
 							? "border border-gray-200 bg-transparent text-gray-400 hover:border-gray-400 hover:text-vfw-red-600"
 							: light

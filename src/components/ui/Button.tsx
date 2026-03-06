@@ -17,9 +17,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-	sm: "px-4 py-2 text-sm",
-	md: "px-6 py-3 text-base",
-	lg: "px-8 py-4 text-lg",
+	sm: "px-4 py-2.5 text-sm",
+	md: "px-5 py-3 text-sm sm:px-6 sm:text-base",
+	lg: "px-6 py-3.5 text-base sm:px-8 sm:py-4 sm:text-lg",
 };
 
 export function Button({
@@ -31,7 +31,7 @@ export function Button({
 	...props
 }: ButtonProps) {
 	const classes = cn(
-		"inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-wider transition-colors duration-300 min-h-[48px] cursor-pointer",
+		"inline-flex min-h-[48px] items-center justify-center rounded-full text-center font-semibold uppercase leading-tight tracking-[0.18em] transition-colors duration-300 cursor-pointer sm:tracking-wider",
 		variantStyles[variant],
 		sizeStyles[size],
 		className,

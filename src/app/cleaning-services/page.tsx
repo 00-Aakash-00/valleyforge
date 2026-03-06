@@ -39,7 +39,7 @@ export default function CleaningServicesPage() {
 
 			{/* Ultrasonic Cleaning */}
 			<ScrollReveal>
-				<section className="bg-white py-20 md:py-28">
+				<section className="bg-white py-16 sm:py-20 md:py-28">
 					<Container>
 						<SectionHeading
 							overline="OUR TECHNOLOGY"
@@ -47,7 +47,7 @@ export default function CleaningServicesPage() {
 							description="We use professional ultrasonic cleaning technology to deliver results that hand cleaning simply can't match."
 						/>
 						<div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-							<div className="rounded-lg bg-white-warm p-6">
+							<div className="rounded-lg bg-white-warm p-5 sm:p-6">
 								<Droplets className="mb-4 h-8 w-8 text-vfw-navy-700" />
 								<h3 className="font-heading text-lg font-bold text-black">How It Works</h3>
 								<p className="mt-2 leading-relaxed text-slate-700">
@@ -57,7 +57,7 @@ export default function CleaningServicesPage() {
 									including areas that are impossible to reach by hand.
 								</p>
 							</div>
-							<div className="rounded-lg bg-white-warm p-6">
+							<div className="rounded-lg bg-white-warm p-5 sm:p-6">
 								<CheckCircle className="mb-4 h-8 w-8 text-success" />
 								<h3 className="font-heading text-lg font-bold text-black">Benefits</h3>
 								<ul className="mt-2 space-y-2 text-slate-700">
@@ -75,7 +75,7 @@ export default function CleaningServicesPage() {
 
 			{/* Basic Cleaning */}
 			<ScrollReveal>
-				<section className="bg-white-warm py-20 md:py-28">
+				<section className="bg-white-warm py-16 sm:py-20 md:py-28">
 					<Container>
 						<div className="grid items-center gap-12 lg:grid-cols-2">
 							<Image
@@ -88,14 +88,16 @@ export default function CleaningServicesPage() {
 							/>
 							<div>
 								<Badge variant="navy">{basic.badge}</Badge>
-								<h2 className="mt-4 font-heading text-3xl font-bold text-black md:text-4xl">
+								<h2 className="mt-4 font-heading text-2xl font-bold text-black sm:text-3xl md:text-4xl">
 									{basic.name}
 								</h2>
-								<p className="mt-2 text-4xl font-bold text-vfw-red-600">
+								<p className="mt-2 text-3xl font-bold text-vfw-red-600 sm:text-4xl">
 									{basic.price}
 									<span className="ml-2 text-lg font-normal text-slate-500">Any Firearm</span>
 								</p>
-								<p className="mt-4 text-lg leading-relaxed text-slate-700">{basic.description}</p>
+								<p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+									{basic.description}
+								</p>
 								<ul className="mt-6 space-y-3">
 									{basic.features.map((f) => (
 										<li key={f} className="flex items-center gap-3">
@@ -112,15 +114,15 @@ export default function CleaningServicesPage() {
 
 			{/* Pro Cleaning */}
 			<ScrollReveal>
-				<section className="bg-white py-20 md:py-28">
+				<section className="bg-white py-16 sm:py-20 md:py-28">
 					<Container>
 						<div className="grid items-center gap-12 lg:grid-cols-2">
 							<div className="order-2 lg:order-1">
 								<Badge variant="red">{pro.badge}</Badge>
-								<h2 className="mt-4 font-heading text-3xl font-bold text-black md:text-4xl">
+								<h2 className="mt-4 font-heading text-2xl font-bold text-black sm:text-3xl md:text-4xl">
 									{pro.name}
 								</h2>
-								<p className="mt-2 text-4xl font-bold text-vfw-red-600">{pro.price}</p>
+								<p className="mt-2 text-3xl font-bold text-vfw-red-600 sm:text-4xl">{pro.price}</p>
 								{pro.priceDetails && (
 									<div className="mt-2 space-y-1">
 										{pro.priceDetails.map((d) => (
@@ -130,7 +132,9 @@ export default function CleaningServicesPage() {
 										))}
 									</div>
 								)}
-								<p className="mt-4 text-lg leading-relaxed text-slate-700">{pro.description}</p>
+								<p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
+									{pro.description}
+								</p>
 								<ul className="mt-6 space-y-3">
 									{pro.features.map((f) => (
 										<li key={f} className="flex items-center gap-3">
@@ -155,7 +159,7 @@ export default function CleaningServicesPage() {
 
 			{/* When to Clean */}
 			<ScrollReveal>
-				<section className="bg-white-warm py-20 md:py-28">
+				<section className="bg-white-warm py-16 sm:py-20 md:py-28">
 					<Container>
 						<SectionHeading overline="FIREARM CARE" title="When Should You Clean Your Firearm?" />
 						<div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
@@ -185,7 +189,7 @@ export default function CleaningServicesPage() {
 
 			{/* Reviews */}
 			<ScrollReveal>
-				<section className="bg-white py-20 md:py-28">
+				<section className="bg-white py-16 sm:py-20 md:py-28">
 					<Container>
 						<SectionHeading overline="CUSTOMER REVIEWS" title="What Our Cleaning Customers Say" />
 						<div className="grid gap-6 md:grid-cols-3">

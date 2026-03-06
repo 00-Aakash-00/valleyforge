@@ -7,14 +7,17 @@ import { CLEANING_SERVICES } from "@/lib/services";
 
 export function CleaningServicesPreview() {
 	return (
-		<section id="services-preview" className="bg-white py-20 md:py-28">
+		<section
+			id="services-preview"
+			className="scroll-mt-24 bg-white py-16 sm:scroll-mt-28 sm:py-20 md:py-28"
+		>
 			<Container>
 				<SectionHeading overline="OUR SPECIALTY" title="Firearm Cleaning Services" />
 				<div className="grid gap-8 md:grid-cols-2">
 					{CLEANING_SERVICES.map((service) => (
 						<div
 							key={service.id}
-							className="rounded-lg bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
+							className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md sm:p-8"
 						>
 							<Badge variant={service.id === "basic-cleaning" ? "navy" : "red"}>
 								{service.badge}

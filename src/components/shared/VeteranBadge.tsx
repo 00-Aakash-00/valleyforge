@@ -11,7 +11,7 @@ export function VeteranBadge({
 	return (
 		<div
 			className={cn(
-				"inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold",
+				"inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-bold sm:px-4 sm:text-sm",
 				light ? "bg-white/10 text-white" : "bg-vfw-navy-50 text-vfw-navy-700",
 				className,
 			)}

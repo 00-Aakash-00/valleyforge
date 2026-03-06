@@ -48,7 +48,9 @@ export default function ServicesPage() {
 
 				return (
 					<ScrollReveal key={service.id}>
-						<section className={`py-20 md:py-28 ${i % 2 === 0 ? "bg-white" : "bg-white-warm"}`}>
+						<section
+							className={`py-16 sm:py-20 md:py-28 ${i % 2 === 0 ? "bg-white" : "bg-white-warm"}`}
+						>
 							<Container>
 								{isAR && (
 									<p className="mb-2 text-center text-xs font-bold uppercase tracking-[0.2em] text-vfw-red-600">
@@ -60,11 +62,13 @@ export default function ServicesPage() {
 										<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-vfw-navy-50 text-vfw-navy-700">
 											<Icon className="h-6 w-6" />
 										</div>
-										<h2 className="font-heading text-3xl font-bold text-black md:text-4xl">
+										<h2 className="font-heading text-2xl font-bold text-black sm:text-3xl md:text-4xl">
 											{service.name}
 										</h2>
-										<p className="mt-2 text-3xl font-bold text-vfw-red-600">{service.price}</p>
-										<p className="mt-4 text-lg leading-relaxed text-slate-700">
+										<p className="mt-2 text-3xl font-bold text-vfw-red-600 sm:text-4xl">
+											{service.price}
+										</p>
+										<p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-lg">
 											{service.description}
 										</p>
 										<ul className="mt-6 space-y-3">
@@ -99,7 +103,7 @@ export default function ServicesPage() {
 
 			{/* Maintenance */}
 			<ScrollReveal>
-				<section className="bg-white py-20 md:py-28">
+				<section className="bg-white py-16 sm:py-20 md:py-28">
 					<Container>
 						<SectionHeading
 							overline="GENERAL MAINTENANCE"

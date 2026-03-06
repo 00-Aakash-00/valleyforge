@@ -4,7 +4,7 @@ import { DashedBorderBox } from "@/components/ui/DashedBorderBox";
 
 export function CerakoteSection() {
 	return (
-		<section className="bg-vfw-navy-900 py-20 md:py-28">
+		<section className="bg-vfw-navy-900 py-16 sm:py-20 md:py-28">
 			<Container>
 				<DashedBorderBox variant="dark">
 					<div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-16">
@@ -12,16 +12,16 @@ export function CerakoteSection() {
 							<p className="text-xs font-bold uppercase tracking-[0.2em] text-vfw-red-600">
 								CUSTOM FINISHES
 							</p>
-							<h2 className="mt-3 font-heading text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+							<h2 className="mt-3 font-heading text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
 								Cerakote <span className="text-vfw-red-600">Services</span>
 							</h2>
-							<p className="mt-4 max-w-xl text-lg text-white/70">
+							<p className="mt-4 max-w-xl text-base text-white/70 sm:text-lg">
 								100+ colors available. Solid colors, camouflage patterns, battleworn finishes, and
 								custom designs.
 							</p>
 							<a
 								href="#contact"
-								className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-full bg-vfw-red-600 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:bg-vfw-red-700"
+								className="mt-8 inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-vfw-red-600 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:bg-vfw-red-700 sm:w-auto"
 							>
 								Contact for Quote
 							</a>

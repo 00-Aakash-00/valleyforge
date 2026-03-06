@@ -11,8 +11,8 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ categories, activeCategory, onSelect }: CategoryFilterProps) {
 	return (
-		<div className="scrollbar-hide -mx-4 overflow-x-auto px-4">
-			<div className="flex gap-2">
+		<div className="scrollbar-hide -mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
+			<div className="flex min-w-max gap-2">
 				<button
 					type="button"
 					onClick={() => onSelect(null)}

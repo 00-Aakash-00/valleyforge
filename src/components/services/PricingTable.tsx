@@ -6,7 +6,7 @@ export function PricingTable({ items }: { items: ARService[] }) {
 			{items.map((item, i) => (
 				<div
 					key={item.name}
-					className={`flex items-center justify-between px-6 py-4 ${
+					className={`flex flex-col items-start gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4 ${
 						i % 2 === 0 ? "bg-white" : "bg-white-warm"
 					}`}
 				>

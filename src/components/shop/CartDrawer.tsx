@@ -1,7 +1,9 @@
 "use client";
 
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "./CartProvider";
 import { ProductImage } from "./ProductImage";
@@ -11,20 +13,27 @@ interface CartDrawerProps {
 	onClose: () => void;
 }
 
+const CLOSE_ANIMATION_MS = 300;
+
 export function CartDrawer({ open, onClose }: CartDrawerProps) {
 	const { items, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCart();
 	const drawerRef = useRef<HTMLDivElement>(null);
+	const { isPhone } = useBreakpoint();
+	const [mounted, setMounted] = useState(open);
 
-	// Lock body scroll when open
+	useBodyScrollLock(open);
+
 	useEffect(() => {
 		if (open) {
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
+			setMounted(true);
+			return;
 		}
-		return () => {
-			document.body.style.overflow = "";
-		};
+
+		const timeout = window.setTimeout(() => {
+			setMounted(false);
+		}, CLOSE_ANIMATION_MS);
+
+		return () => window.clearTimeout(timeout);
 	}, [open]);
 
 	// Close on Escape key
@@ -44,6 +53,10 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 			drawerRef.current.focus();
 		}
 	}, [open]);
+
+	if (!mounted) {
+		return null;
+	}
 
 	return (
 		<>
@@ -65,17 +78,22 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 				aria-modal="true"
 				tabIndex={-1}
 				className={cn(
-					"fixed top-0 right-0 z-50 flex h-full w-full max-w-md flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out",
+					"fixed top-0 right-0 z-50 flex h-[100dvh] w-full flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out",
+					isPhone ? "max-w-none" : "max-w-md",
 					open ? "translate-x-0" : "translate-x-full",
 				)}
+				style={{
+					paddingTop: "max(0px, var(--safe-area-top))",
+					paddingBottom: "max(0px, var(--safe-area-bottom))",
+				}}
 			>
 				{/* Header */}
-				<div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+				<div className="flex items-center justify-between border-b border-gray-200 px-4 py-4 sm:px-6">
 					<h2 className="font-heading text-lg font-bold">Your Cart ({totalItems})</h2>
 					<button
 						type="button"
 						onClick={onClose}
-						className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-gray-100 hover:text-charcoal"
+						className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-gray-100 hover:text-charcoal"
 						aria-label="Close cart"
 					>
 						<X className="h-5 w-5" />
@@ -83,7 +101,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 				</div>
 
 				{/* Cart items */}
-				<div className="flex-1 overflow-y-auto px-6 py-4">
+				<div className="flex-1 overflow-y-auto px-4 py-4 sm:px-6">
 					{items.length === 0 ? (
 						<div className="flex flex-col items-center justify-center py-16 text-center">
 							<ShoppingBag className="mb-4 h-16 w-16 text-gray-300" />
@@ -97,7 +115,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 							{items.map((item) => (
 								<li
 									key={item.product.id}
-									className="flex gap-4 rounded-lg border border-gray-200 p-4"
+									className="flex gap-3 rounded-lg border border-gray-200 p-3 sm:gap-4 sm:p-4"
 								>
 									{/* Product image */}
 									<ProductImage
@@ -105,7 +123,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 										width={80}
 										height={80}
 										sizes="80px"
-										className="h-20 w-20 flex-shrink-0 rounded-lg object-cover"
+										className="h-16 w-16 flex-shrink-0 rounded-lg object-cover sm:h-20 sm:w-20"
 									/>
 
 									{/* Details */}
@@ -129,7 +147,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 										</p>
 
 										{/* Quantity controls */}
-										<div className="mt-2 flex items-center gap-2">
+										<div className="mt-3 flex flex-wrap items-center gap-2">
 											<button
 												type="button"
 												onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
@@ -149,7 +167,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 											>
 												<Plus className="h-3 w-3" />
 											</button>
-											<span className="ml-auto text-sm font-semibold text-charcoal">
+											<span className="basis-full pt-1 text-sm font-semibold text-charcoal sm:ml-auto sm:basis-auto sm:pt-0">
 												{formatPrice(item.product.price * item.quantity)}
 											</span>
 										</div>
@@ -162,7 +180,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 
 				{/* Footer with subtotal and actions */}
 				{items.length > 0 && (
-					<div className="border-t border-gray-200 px-6 py-4">
+					<div className="border-t border-gray-200 px-4 py-4 sm:px-6">
 						<div className="mb-4 flex items-center justify-between">
 							<span className="text-base font-semibold text-charcoal">Subtotal</span>
 							<span className="text-lg font-bold text-charcoal">{formatPrice(totalPrice)}</span>

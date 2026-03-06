@@ -26,12 +26,12 @@ export function ProductCard({ product }: ProductCardProps) {
 				/>
 			</Link>
 
-			<div className="p-4">
+			<div className="p-4 sm:p-5">
 				<Badge variant="navy" className="mb-2">
 					{categoryName}
 				</Badge>
 
-				<h3 className="font-heading text-base font-semibold leading-tight text-charcoal">
+				<h3 className="font-heading text-lg font-semibold leading-tight text-charcoal sm:text-base">
 					<Link href={productHref} className="transition-colors hover:text-vfw-red-600">
 						{product.name}
 					</Link>

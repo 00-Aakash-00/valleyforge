@@ -48,11 +48,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 	return (
 		<>
 			{/* Hero */}
-			<section className="bg-vfw-navy-900 pt-32 pb-16">
+			<section className="bg-vfw-navy-900 pt-28 pb-14 sm:pt-32 sm:pb-16">
 				<Container>
 					{/* Breadcrumb */}
 					<nav aria-label="Breadcrumb" className="mb-6">
-						<ol className="flex items-center gap-1 text-sm text-white/60">
+						<ol className="flex flex-wrap items-center gap-x-1 gap-y-2 text-sm text-white/60">
 							<li>
 								<Link
 									href="/shop"
@@ -68,15 +68,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 						</ol>
 					</nav>
 
-					<h1 className="font-heading text-4xl font-bold text-white md:text-5xl">
+					<h1 className="font-heading text-3xl font-bold text-white sm:text-4xl md:text-5xl">
 						{category.name}
 					</h1>
-					<p className="mt-3 max-w-xl text-lg text-white/80">{category.description}</p>
+					<p className="mt-3 max-w-xl text-base text-white/80 sm:text-lg">{category.description}</p>
 				</Container>
 			</section>
 
 			{/* Products */}
-			<section className="bg-white-warm py-16">
+			<section className="bg-white-warm py-14 sm:py-16">
 				<Container>
 					<ProductGrid products={products} />
 

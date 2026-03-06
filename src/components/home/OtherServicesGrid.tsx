@@ -14,7 +14,7 @@ const ICONS: Record<string, React.ElementType> = {
 
 export function OtherServicesGrid() {
 	return (
-		<section className="bg-white-warm py-20 md:py-28">
+		<section className="bg-white-warm py-16 sm:py-20 md:py-28">
 			<Container>
 				<SectionHeading overline="FULL SERVICE MENU" title="Other Gunsmith Services" />
 				<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -23,7 +23,7 @@ export function OtherServicesGrid() {
 						return (
 							<div
 								key={service.id}
-								className="rounded-lg bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+								className="rounded-lg bg-white p-5 shadow-sm transition-shadow hover:shadow-md sm:p-6"
 							>
 								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-vfw-navy-50 text-vfw-navy-700">
 									<Icon className="h-6 w-6" />
