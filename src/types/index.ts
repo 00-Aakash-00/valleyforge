@@ -41,6 +41,7 @@ export interface Service {
 	price: string;
 	features: string[];
 	image: string;
+	cardImage?: string;
 }
 
 export interface CleaningService {

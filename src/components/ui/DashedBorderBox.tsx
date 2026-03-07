@@ -17,21 +17,21 @@ export function DashedBorderBox({ variant, children, className }: DashedBorderBo
 	return (
 		<div className={cn("relative overflow-hidden lg:overflow-visible", className)}>
 			{/* Dashed border container */}
-			<div className={cn("relative border border-dashed p-6 sm:p-10 lg:p-16", borderColor)}>
+			<div className={cn("relative border-2 border-dashed p-6 sm:p-10 lg:p-16", borderColor)}>
 				{/* Corner lines extending OUTWARD from each corner */}
 
 				{/* Top-left — horizontal extends left */}
 				<div
 					className={cn(
 						extensionClasses,
-						"-top-px right-full h-0 border-t",
+						"-top-px right-full h-0 border-t-2",
 						horizontalExtensionClasses,
 					)}
 					style={{ maskImage: "linear-gradient(to left, white, transparent)" }}
 				/>
 				{/* Top-left — vertical extends up */}
 				<div
-					className={cn(extensionClasses, "-left-px bottom-full h-20 w-0 border-l")}
+					className={cn(extensionClasses, "-left-px bottom-full h-20 w-0 border-l-2")}
 					style={{ maskImage: "linear-gradient(to top, white, transparent)" }}
 				/>
 
@@ -39,14 +39,14 @@ export function DashedBorderBox({ variant, children, className }: DashedBorderBo
 				<div
 					className={cn(
 						extensionClasses,
-						"-top-px left-full h-0 border-t",
+						"-top-px left-full h-0 border-t-2",
 						horizontalExtensionClasses,
 					)}
 					style={{ maskImage: "linear-gradient(to right, white, transparent)" }}
 				/>
 				{/* Top-right — vertical extends up */}
 				<div
-					className={cn(extensionClasses, "-right-px bottom-full h-20 w-0 border-r")}
+					className={cn(extensionClasses, "-right-px bottom-full h-20 w-0 border-r-2")}
 					style={{ maskImage: "linear-gradient(to top, white, transparent)" }}
 				/>
 
@@ -54,14 +54,14 @@ export function DashedBorderBox({ variant, children, className }: DashedBorderBo
 				<div
 					className={cn(
 						extensionClasses,
-						"-bottom-px right-full h-0 border-b",
+						"-bottom-px right-full h-0 border-b-2",
 						horizontalExtensionClasses,
 					)}
 					style={{ maskImage: "linear-gradient(to left, white, transparent)" }}
 				/>
 				{/* Bottom-left — vertical extends down */}
 				<div
-					className={cn(extensionClasses, "-left-px top-full h-20 w-0 border-l")}
+					className={cn(extensionClasses, "-left-px top-full h-20 w-0 border-l-2")}
 					style={{ maskImage: "linear-gradient(to bottom, white, transparent)" }}
 				/>
 
@@ -69,14 +69,14 @@ export function DashedBorderBox({ variant, children, className }: DashedBorderBo
 				<div
 					className={cn(
 						extensionClasses,
-						"-bottom-px left-full h-0 border-b",
+						"-bottom-px left-full h-0 border-b-2",
 						horizontalExtensionClasses,
 					)}
 					style={{ maskImage: "linear-gradient(to right, white, transparent)" }}
 				/>
 				{/* Bottom-right — vertical extends down */}
 				<div
-					className={cn(extensionClasses, "-right-px top-full h-20 w-0 border-r")}
+					className={cn(extensionClasses, "-right-px top-full h-20 w-0 border-r-2")}
 					style={{ maskImage: "linear-gradient(to bottom, white, transparent)" }}
 				/>
 

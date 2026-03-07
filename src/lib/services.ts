@@ -51,6 +51,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Sight-Pro universal sight pusher",
 		],
 		image: "/images/services/sight-installation.png",
+		cardImage: "/images/services/other/sight-installation.png",
 	},
 	{
 		id: "scope-mounting",
@@ -66,6 +67,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Ring and base installation",
 		],
 		image: "/images/services/scope-mounting.jpeg",
+		cardImage: "/images/services/other/scope-mounting.png",
 	},
 	{
 		id: "trigger-kits",
@@ -82,6 +84,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Function and safety check",
 		],
 		image: "/images/services/trigger-kits.jpeg",
+		cardImage: "/images/services/other/trigger-kits.png",
 	},
 	{
 		id: "ar-services",
@@ -98,6 +101,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Muzzle device installation",
 		],
 		image: "/images/services/ar-services.jpeg",
+		cardImage: "/images/services/other/ar-services.png",
 	},
 	{
 		id: "cerakote",
@@ -114,6 +118,7 @@ export const OTHER_SERVICES: Service[] = [
 			"Partner: Lawless Coatings",
 		],
 		image: "/images/services/cerakote.jpeg",
+		cardImage: "/images/services/other/cerakote.png",
 	},
 ];
 

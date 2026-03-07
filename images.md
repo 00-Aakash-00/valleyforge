@@ -48,7 +48,7 @@ All images for the Valley Forge Weaponry website. Each prompt is designed for AI
 **Dimensions:** 800×600 (4:3)
 **Used in:** cleaning-services/page.tsx (basic cleaning section)
 
-**Prompt:** Field-stripped semi-automatic handgun on a dark gun cleaning mat. Components neatly arranged — slide, barrel, recoil spring, frame. A bottle of CLP and a few cleaning patches beside it. Style: overhead product photography with even lighting. Colour scheme: matte black cleaning mat background, steel-gray and dark metallic gun components, amber-tinted CLP bottle, white cleaning patches as contrast. Mood: clean, organized, methodical. Composition: flat lay, gun components arranged in an exploded-view pattern in the center, cleaning supplies in the lower-right corner, balanced negative space. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** Field-stripped semi-automatic handgun on a dark gun cleaning mat. Components neatly arranged — slide, barrel, recoil spring, frame. A bottle of CLP and a few cleaning patches beside it. Style: overhead product photography with even lighting. Colour scheme: matte black cleaning mat background, steel-gray and dark metallic gun components, amber-tinted CLP bottle, white cleaning patches as contrast. Mood: clean, organized, methodical. Composition: flat lay, gun components arranged in an exploded-view pattern in the center, cleaning supplies in the lower-right corner, balanced negative space. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
@@ -56,47 +56,47 @@ All images for the Valley Forge Weaponry website. Each prompt is designed for AI
 **Dimensions:** 800×600 (4:3)
 **Used in:** cleaning-services/page.tsx (pro cleaning section)
 
-**Prompt:** Professional ultrasonic cleaning machine with the lid open, revealing firearm parts submerged in cleaning solution. Small cavitation bubbles visible in the liquid. Stainless steel ultrasonic tank. Style: commercial equipment photography with precise studio lighting. Colour scheme: brushed stainless steel tank, clear blue-tinted cleaning solution, warm amber workshop lighting in the background, dark navy wall behind. Mood: high-tech, clinical, professional. Composition: three-quarter angle view of the ultrasonic tank filling the center frame, lid propped open at 45 degrees, firearm parts visible beneath the liquid surface, workshop environment softly blurred in the background. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** Professional ultrasonic cleaning machine with the lid open, revealing firearm parts submerged in cleaning solution. Small cavitation bubbles visible in the liquid. Stainless steel ultrasonic tank. Style: commercial equipment photography with precise studio lighting. Colour scheme: brushed stainless steel tank, clear blue-tinted cleaning solution, warm amber workshop lighting in the background, dark navy wall behind. Mood: high-tech, clinical, professional. Composition: three-quarter angle view of the ultrasonic tank filling the center frame, lid propped open at 45 degrees, firearm parts visible beneath the liquid surface, workshop environment softly blurred in the background. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
 ### 7. `/images/services/sight-installation.png`
-**Dimensions:** 800×600 (4:3)
-**Used in:** services/page.tsx (sight installation section)
+**Dimensions:** 600×900 (2:3, scroll card format)
+**Used in:** OtherServicesGrid.tsx (homepage horizontal scroll card), services/page.tsx
 
-**Prompt:** Close-up of a universal sight pusher tool pressing a new dovetail sight onto a handgun slide. The slide is clamped securely in the tool. Style: macro-detail commercial photography with dramatic lighting. Colour scheme: dark matte black background, warm amber side lighting highlighting polished steel surfaces, subtle blue-steel tones on the slide. Mood: precise, technical, focused intensity. Composition: tight close-up filling the frame, sight pusher mechanism centered, sharp focus on the point where the sight meets the slide, shallow depth of field blurring the tool's body, dramatic side light from the right. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** Close-up of a universal sight pusher tool pressing a new dovetail sight onto a handgun slide. The slide is clamped securely in the tool. Style: dark, moody workshop photography with dramatic lighting. Colour scheme: dark navy/charcoal background with warm amber task lighting highlighting polished steel surfaces, subtle blue-steel tones on the slide. Mood: professional, cinematic, authoritative. Composition: wide horizontal frame optimized for object-cover cropping — sight pusher mechanism centered with no critical content at edges, sharp focus on the point where the sight meets the slide, shallow depth of field blurring the tool's body, dramatic side light from the right. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
 ### 8. `/images/services/scope-mounting.jpeg`
-**Dimensions:** 800×600 (4:3)
-**Used in:** services/page.tsx (scope mounting section)
+**Dimensions:** 600×900 (2:3, scroll card format)
+**Used in:** OtherServicesGrid.tsx (homepage horizontal scroll card), services/page.tsx
 
-**Prompt:** A rifle scope being mounted on a bolt-action rifle using scope rings and a torque wrench. Scope level bubble visible. The rifle is secured in a gun vise on a workbench. Style: commercial gunsmith photography with controlled workshop lighting. Colour scheme: matte black rifle stock, dark blued steel barrel, black anodized scope body, warm amber workbench lighting, cool steel-gray on tools and scope rings. Mood: methodical, exacting, professional craftsmanship. Composition: eye-level angle, scope and rings centered in the frame, torque wrench entering from the right, rifle vise grounding the bottom, sharp focus on the scope mounting point with soft background bokeh. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** A rifle scope being mounted on a bolt-action rifle using scope rings and a torque wrench. Scope level bubble visible. The rifle is secured in a gun vise on a workbench. Style: dark, moody workshop photography with controlled lighting. Colour scheme: dark navy/charcoal background, matte black rifle stock, dark blued steel barrel, warm amber workbench lighting, cool steel-gray on tools and scope rings. Mood: professional, cinematic, authoritative. Composition: wide horizontal frame optimized for object-cover cropping — scope and rings centered with no critical content at edges, torque wrench entering from the right, sharp focus on the scope mounting point with soft background bokeh. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
 ### 9. `/images/services/trigger-kits.jpeg`
-**Dimensions:** 800×600 (4:3)
-**Used in:** services/page.tsx (trigger kits section)
+**Dimensions:** 600×900 (2:3, scroll card format)
+**Used in:** OtherServicesGrid.tsx (homepage horizontal scroll card), services/page.tsx
 
-**Prompt:** Close-up of a flat-face aftermarket trigger installed in a stripped polymer-framed pistol. The trigger mechanism clearly visible — trigger bar, connector, springs. A second trigger kit in its packaging sits nearby. Style: detail-oriented product photography with shallow depth of field. Colour scheme: dark charcoal polymer frame, brushed aluminum trigger with satin finish, warm amber accent lighting on metal surfaces, matte black background. Mood: precise, technical, upgrade-focused. Composition: close-up centered on the trigger group filling two-thirds of the frame, packaged trigger kit in soft focus in the background right, shallow depth of field drawing the eye to the installed trigger face. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** Close-up of a flat-face aftermarket trigger installed in a stripped polymer-framed pistol. The trigger mechanism clearly visible — trigger bar, connector, springs. Style: dark, moody workshop photography with shallow depth of field. Colour scheme: dark navy/charcoal background, dark charcoal polymer frame, brushed aluminum trigger with satin finish, warm amber accent lighting on metal surfaces. Mood: professional, cinematic, authoritative. Composition: wide horizontal frame optimized for object-cover cropping — trigger group centered with no critical content at edges, shallow depth of field drawing the eye to the installed trigger face. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
 ### 10. `/images/services/ar-services.jpeg`
-**Dimensions:** 800×600 (4:3)
-**Used in:** Data only (services.ts)
+**Dimensions:** 600×900 (2:3, scroll card format)
+**Used in:** OtherServicesGrid.tsx (homepage horizontal scroll card), services/page.tsx
 
-**Prompt:** AR-15 upper receiver secured in an armorer's vise block, with barrel partially installed. Armorer's wrench, torque wrench, and gas block visible on the workbench. Style: commercial workshop action photography with warm, controlled lighting. Colour scheme: matte black and phosphate-gray AR components, dark navy workbench, warm amber overhead task light, steel-gray tool surfaces. Mood: hands-on, military-precision, industrious. Composition: three-quarter overhead angle, upper receiver and vise block centered, tools arranged around the build in an arc, organized tool wall in soft-focus background providing depth. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** AR-15 upper receiver secured in an armorer's vise block, with barrel partially installed. Armorer's wrench, torque wrench, and gas block visible on the workbench. Style: dark, moody workshop photography with warm, controlled lighting. Colour scheme: dark navy/charcoal background, matte black and phosphate-gray AR components, warm amber overhead task light, steel-gray tool surfaces. Mood: professional, cinematic, authoritative. Composition: wide horizontal frame optimized for object-cover cropping — upper receiver and vise block centered with no critical content at edges, tools arranged around the build, organized tool wall in soft-focus background providing depth. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
 ### 11. `/images/services/cerakote.jpeg`
-**Dimensions:** 800×600 (4:3)
-**Used in:** Data only (services.ts)
+**Dimensions:** 600×900 (2:3, scroll card format)
+**Used in:** OtherServicesGrid.tsx (homepage horizontal scroll card), services/page.tsx
 
-**Prompt:** Collection of Cerakote-coated firearm parts arranged artistically — a slide in burnt bronze, a handguard in OD green, a lower receiver in flat dark earth, small parts in bright red. Style: studio product showcase photography with even, diffused lighting. Colour scheme: vibrant burnt bronze, olive drab green, flat dark earth tan, bright crimson red parts — all contrasting against a matte black surface backdrop. Mood: bold, artistic, premium showcase. Composition: overhead flat lay, parts arranged in a diagonal line from top-left to bottom-right by size (largest to smallest), each piece spaced evenly, matte black surface filling the frame. No text, no watermarks, no logos, no people. --ar 4:3
+**Prompt:** Collection of Cerakote-coated firearm parts arranged artistically — a slide in burnt bronze, a handguard in OD green, a lower receiver in flat dark earth, small parts in bright red. Style: dark, moody workshop photography with even, diffused lighting. Colour scheme: dark navy/charcoal background surface, vibrant burnt bronze, olive drab green, flat dark earth tan, bright crimson red parts — warm amber accent lighting adding depth. Mood: professional, cinematic, authoritative. Composition: wide horizontal frame optimized for object-cover cropping — parts arranged centrally in a diagonal grouping with no critical content at edges, each piece spaced evenly, dark surface filling the frame. No text, no watermarks, no logos, no people. --ar 2:3
 
 ---
 
