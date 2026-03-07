@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ProductGrid } from "@/components/shop/ProductGrid";
 import { Container } from "@/components/ui/Container";
 import { createMetadata } from "@/lib/metadata";
-import { CATEGORIES, getProductsByCategory } from "@/lib/products";
+import { CATEGORIES, getCategoryBySlug, getProductsByCategory } from "@/lib/products";
 
 interface CategoryPageProps {
 	params: Promise<{ category: string }>;
@@ -19,7 +19,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
 	const { category: categorySlug } = await params;
-	const category = CATEGORIES.find((c) => c.slug === categorySlug);
+	const category = getCategoryBySlug(categorySlug);
 	if (!category) return {};
 
 	return createMetadata({
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
 	const { category: categorySlug } = await params;
-	const category = CATEGORIES.find((c) => c.slug === categorySlug);
+	const category = getCategoryBySlug(categorySlug);
 
 	if (!category) {
 		notFound();

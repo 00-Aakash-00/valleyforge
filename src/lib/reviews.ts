@@ -1,5 +1,7 @@
 import type { Review } from "@/types";
 
+const CLEANING_REVIEW_NAMES = new Set(["Stephanie Herrera", "Vicki L", "Jill R"]);
+
 export const REVIEWS: Review[] = [
 	{
 		id: "1",
@@ -115,6 +117,4 @@ export const REVIEWS: Review[] = [
 	},
 ];
 
-export const CLEANING_REVIEWS = REVIEWS.filter((r) =>
-	["Stephanie Herrera", "Vicki L", "Jill R"].includes(r.name),
-);
+export const CLEANING_REVIEWS = REVIEWS.filter((r) => CLEANING_REVIEW_NAMES.has(r.name));

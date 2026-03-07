@@ -1,11 +1,9 @@
-"use client";
-
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SITE_URL } from "@/lib/constants";
-import { CATEGORIES, hasProductImage } from "@/lib/products";
+import { getCategoryBySlug, hasProductImage } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 import { AddToCartButton } from "./AddToCartButton";
@@ -18,7 +16,7 @@ interface ProductDetailProps {
 }
 
 export function ProductDetail({ product, relatedProducts }: ProductDetailProps) {
-	const category = CATEGORIES.find((c) => c.slug === product.category);
+	const category = getCategoryBySlug(product.category);
 	const categoryName = category?.name ?? product.category;
 
 	const jsonLd = {
@@ -124,14 +122,14 @@ export function ProductDetail({ product, relatedProducts }: ProductDetailProps) 
 			</section>
 
 			{/* Related products */}
-			{relatedProducts.length > 0 && (
+			{relatedProducts.length > 0 ? (
 				<section className="border-t border-gray-200 bg-white-warm py-16">
 					<Container>
 						<h2 className="font-heading mb-8 text-2xl font-bold text-charcoal">Related Products</h2>
 						<ProductGrid products={relatedProducts} />
 					</Container>
 				</section>
-			)}
+			) : null}
 		</>
 	);
 }

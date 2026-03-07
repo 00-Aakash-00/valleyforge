@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { StarRating } from "@/components/shared/StarRating";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -8,6 +8,34 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { BUSINESS } from "@/lib/constants";
 import { REVIEWS } from "@/lib/reviews";
 import type { Review } from "@/types";
+
+function splitReviewsByRow(reviews: Review[]) {
+	const firstRow: Review[] = [];
+	const secondRow: Review[] = [];
+
+	for (const [index, review] of reviews.entries()) {
+		if (index % 2 === 0) {
+			firstRow.push(review);
+		} else {
+			secondRow.push(review);
+		}
+	}
+
+	return { firstRow, secondRow };
+}
+
+function repeatReviews(reviews: Review[]) {
+	return [0, 1, 2].flatMap((copy) =>
+		reviews.map((review) => ({
+			key: `${review.id}-copy-${copy}`,
+			review,
+		})),
+	);
+}
+
+const { firstRow: ROW_1_REVIEWS, secondRow: ROW_2_REVIEWS } = splitReviewsByRow(REVIEWS);
+const ROW_1_REPEATED_REVIEWS = repeatReviews(ROW_1_REVIEWS);
+const ROW_2_REPEATED_REVIEWS = repeatReviews(ROW_2_REVIEWS);
 
 function SourceBadge({ source }: { source: "Google" | "Yelp" }) {
 	return (
@@ -38,6 +66,7 @@ function TestimonialCard({ review }: { review: Review }) {
 
 function MarqueeRow({
 	reviews,
+	repeatedReviews,
 	direction,
 	isPaused,
 	onPause,
@@ -45,6 +74,7 @@ function MarqueeRow({
 	reducedMotion,
 }: {
 	reviews: Review[];
+	repeatedReviews: { key: string; review: Review }[];
 	direction: "left" | "right";
 	isPaused: boolean;
 	onPause: () => void;
@@ -53,58 +83,38 @@ function MarqueeRow({
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const rafRef = useRef<number>(0);
-
-	const repeatedReviews = [0, 1, 2].flatMap((copy) =>
-		reviews.map((review) => ({
-			key: `${review.id}-copy-${copy}`,
-			review,
-		})),
-	);
+	const handlePause = useEffectEvent(() => {
+		onPause();
+	});
+	const handleResume = useEffectEvent(() => {
+		onResume();
+	});
 
 	useEffect(() => {
 		const el = scrollRef.current;
 		if (!el) return;
 
-		const handleMouseEnter = () => onPause();
-		const handleMouseLeave = () => onResume();
-		const handleTouchStart = () => onPause();
-		const handleTouchEnd = () => onResume();
+		const pause = () => {
+			handlePause();
+		};
+		const resume = () => {
+			handleResume();
+		};
 
-		el.addEventListener("mouseenter", handleMouseEnter);
-		el.addEventListener("mouseleave", handleMouseLeave);
-		el.addEventListener("touchstart", handleTouchStart, { passive: true });
-		el.addEventListener("touchend", handleTouchEnd, { passive: true });
-		el.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+		el.addEventListener("mouseenter", pause);
+		el.addEventListener("mouseleave", resume);
+		el.addEventListener("touchstart", pause, { passive: true });
+		el.addEventListener("touchend", resume, { passive: true });
+		el.addEventListener("touchcancel", resume, { passive: true });
 
 		return () => {
-			el.removeEventListener("mouseenter", handleMouseEnter);
-			el.removeEventListener("mouseleave", handleMouseLeave);
-			el.removeEventListener("touchstart", handleTouchStart);
-			el.removeEventListener("touchend", handleTouchEnd);
-			el.removeEventListener("touchcancel", handleTouchEnd);
+			el.removeEventListener("mouseenter", pause);
+			el.removeEventListener("mouseleave", resume);
+			el.removeEventListener("touchstart", pause);
+			el.removeEventListener("touchend", resume);
+			el.removeEventListener("touchcancel", resume);
 		};
-	}, [onPause, onResume]);
-
-	const animate = useCallback(() => {
-		const el = scrollRef.current;
-		if (!el) return;
-
-		const third = el.scrollWidth / 3;
-
-		if (direction === "left") {
-			el.scrollLeft += 0.5;
-			if (el.scrollLeft >= third * 2) {
-				el.scrollLeft = third;
-			}
-		} else {
-			el.scrollLeft -= 0.5;
-			if (el.scrollLeft <= 0) {
-				el.scrollLeft = third;
-			}
-		}
-
-		rafRef.current = requestAnimationFrame(animate);
-	}, [direction]);
+	}, []);
 
 	useEffect(() => {
 		if (reducedMotion) return;
@@ -118,6 +128,27 @@ function MarqueeRow({
 	useEffect(() => {
 		if (reducedMotion) return;
 
+		const animate = () => {
+			const el = scrollRef.current;
+			if (!el) return;
+
+			const third = el.scrollWidth / 3;
+
+			if (direction === "left") {
+				el.scrollLeft += 0.5;
+				if (el.scrollLeft >= third * 2) {
+					el.scrollLeft = third;
+				}
+			} else {
+				el.scrollLeft -= 0.5;
+				if (el.scrollLeft <= 0) {
+					el.scrollLeft = third;
+				}
+			}
+
+			rafRef.current = requestAnimationFrame(animate);
+		};
+
 		if (!isPaused) {
 			rafRef.current = requestAnimationFrame(animate);
 		}
@@ -127,7 +158,7 @@ function MarqueeRow({
 				cancelAnimationFrame(rafRef.current);
 			}
 		};
-	}, [isPaused, animate, reducedMotion]);
+	}, [direction, isPaused, reducedMotion]);
 
 	if (reducedMotion) {
 		return (
@@ -154,9 +185,6 @@ export function TestimonialCarousel() {
 	const [isPaused, setIsPaused] = useState(false);
 	const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
-	const row1Reviews = REVIEWS.filter((_, i) => i % 2 === 0);
-	const row2Reviews = REVIEWS.filter((_, i) => i % 2 === 1);
-
 	const pause = () => setIsPaused(true);
 	const resume = () => setIsPaused(false);
 
@@ -180,7 +208,8 @@ export function TestimonialCarousel() {
 
 				<div className="space-y-4 sm:space-y-6">
 					<MarqueeRow
-						reviews={row1Reviews}
+						reviews={ROW_1_REVIEWS}
+						repeatedReviews={ROW_1_REPEATED_REVIEWS}
 						direction="left"
 						isPaused={isPaused}
 						onPause={pause}
@@ -188,7 +217,8 @@ export function TestimonialCarousel() {
 						reducedMotion={reducedMotion}
 					/>
 					<MarqueeRow
-						reviews={row2Reviews}
+						reviews={ROW_2_REVIEWS}
+						repeatedReviews={ROW_2_REPEATED_REVIEWS}
 						direction="right"
 						isPaused={isPaused}
 						onPause={pause}

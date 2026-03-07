@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { CategoryInfo } from "@/types";
+import type { CategoryInfo, ProductCategory } from "@/types";
 
 interface CategoryFilterProps {
 	categories: CategoryInfo[];
-	activeCategory: string | null;
-	onSelect: (slug: string | null) => void;
+	activeCategory: ProductCategory | null;
+	onSelect: (slug: ProductCategory | null) => void;
 }
 
 export function CategoryFilter({ categories, activeCategory, onSelect }: CategoryFilterProps) {

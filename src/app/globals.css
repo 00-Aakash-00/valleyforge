@@ -107,6 +107,11 @@ h3 {
 	flex-shrink: 0;
 }
 
+.content-auto-card {
+	content-visibility: auto;
+	contain-intrinsic-size: 0 28rem;
+}
+
 /* Fade-in animation */
 @keyframes fadeInUp {
 	from {

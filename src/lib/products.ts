@@ -336,6 +336,16 @@ export const PRODUCTS: Product[] = [
 
 // Keep shop placeholders visible until individual catalog assets are actually added.
 const AVAILABLE_PRODUCT_IMAGE_ASSETS = new Set<string>();
+const CATEGORY_BY_SLUG = new Map(CATEGORIES.map((category) => [category.slug, category]));
+const PRODUCT_BY_SLUG = new Map<string, Product>();
+const PRODUCTS_BY_CATEGORY = new Map(
+	CATEGORIES.map((category) => [category.slug, [] as Product[]]),
+);
+
+for (const product of PRODUCTS) {
+	PRODUCT_BY_SLUG.set(product.slug, product);
+	PRODUCTS_BY_CATEGORY.get(product.category)?.push(product);
+}
 
 export function hasProductImage(image: string): boolean {
 	if (!image.startsWith("/images/shop/")) {
@@ -345,17 +355,37 @@ export function hasProductImage(image: string): boolean {
 	return AVAILABLE_PRODUCT_IMAGE_ASSETS.has(image);
 }
 
+export function getCategoryBySlug(categorySlug: string): CategoryInfo | undefined {
+	return CATEGORY_BY_SLUG.get(categorySlug as Product["category"]);
+}
+
 export function getProductsByCategory(category: string): Product[] {
-	return PRODUCTS.filter((p) => p.category === category);
+	return PRODUCTS_BY_CATEGORY.get(category as Product["category"]) ?? [];
 }
 
 export function getProductBySlug(slug: string): Product | undefined {
-	return PRODUCTS.find((p) => p.slug === slug);
+	return PRODUCT_BY_SLUG.get(slug);
+}
+
+export function getProductByCategoryAndSlug(
+	categorySlug: string,
+	slug: string,
+): Product | undefined {
+	const product = PRODUCT_BY_SLUG.get(slug);
+
+	if (!product || product.category !== categorySlug) {
+		return undefined;
+	}
+
+	return product;
 }
 
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
-	return PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id).slice(
-		0,
-		limit,
-	);
+	const categoryProducts = PRODUCTS_BY_CATEGORY.get(product.category);
+
+	if (!categoryProducts) {
+		return [];
+	}
+
+	return categoryProducts.filter((candidate) => candidate.id !== product.id).slice(0, limit);
 }

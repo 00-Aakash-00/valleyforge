@@ -1,9 +1,10 @@
 "use client";
 
 import { Menu, Phone } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useBreakpoint } from "@/hooks/useBreakpoint";
+import { startTransition, useEffect, useState } from "react";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { BUSINESS } from "@/lib/constants";
 import { cn, formatPhone } from "@/lib/utils";
 import { MobileMenu } from "./MobileMenu";
@@ -19,12 +20,19 @@ export function Navbar() {
 	const pathname = usePathname();
 	const [scrolled, setScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const { isDesktop } = useBreakpoint();
+	const isDesktop = useMediaQuery("(min-width: 1024px)");
 	const isHomePage = pathname === "/";
 	const useTransparentDesktopHeader = isHomePage && !scrolled && !menuOpen;
 
 	useEffect(() => {
-		const onScroll = () => setScrolled(window.scrollY > 50);
+		const onScroll = () => {
+			const hasScrolled = window.scrollY > 50;
+			startTransition(() => {
+				setScrolled((current) => (current === hasScrolled ? current : hasScrolled));
+			});
+		};
+
+		onScroll();
 		window.addEventListener("scroll", onScroll, { passive: true });
 		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
@@ -49,7 +57,7 @@ export function Navbar() {
 				)}
 			>
 				<div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8">
-					<a href="/" className="flex items-center gap-2">
+					<Link href="/" className="flex items-center gap-2">
 						<span
 							className={cn(
 								"font-heading text-lg font-bold transition-colors sm:text-xl",
@@ -58,11 +66,11 @@ export function Navbar() {
 						>
 							Valley Forge Weaponry
 						</span>
-					</a>
+					</Link>
 
 					<nav className="hidden items-center gap-1 lg:flex">
 						{NAV_LINKS.map((link) => (
-							<a
+							<Link
 								key={link.href}
 								href={link.href}
 								className={cn(
@@ -73,7 +81,7 @@ export function Navbar() {
 								)}
 							>
 								{link.label}
-							</a>
+							</Link>
 						))}
 						<a
 							href={`tel:${formatPhone(BUSINESS.phone)}`}

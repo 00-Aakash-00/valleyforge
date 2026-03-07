@@ -1,9 +1,8 @@
 "use client";
 
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
-import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { cn, formatPrice } from "@/lib/utils";
 import { useCart } from "./CartProvider";
 import { ProductImage } from "./ProductImage";
@@ -18,8 +17,10 @@ const CLOSE_ANIMATION_MS = 300;
 export function CartDrawer({ open, onClose }: CartDrawerProps) {
 	const { items, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCart();
 	const drawerRef = useRef<HTMLDivElement>(null);
-	const { isPhone } = useBreakpoint();
 	const [mounted, setMounted] = useState(open);
+	const handleClose = useEffectEvent(() => {
+		onClose();
+	});
 
 	useBodyScrollLock(open);
 
@@ -38,14 +39,18 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 
 	// Close on Escape key
 	useEffect(() => {
+		if (!open) {
+			return;
+		}
+
 		function handleKeyDown(e: KeyboardEvent) {
-			if (e.key === "Escape" && open) {
-				onClose();
+			if (e.key === "Escape") {
+				handleClose();
 			}
 		}
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [open, onClose]);
+	}, [open]);
 
 	// Focus trap
 	useEffect(() => {
@@ -78,8 +83,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 				aria-modal="true"
 				tabIndex={-1}
 				className={cn(
-					"fixed top-0 right-0 z-50 flex h-[100dvh] w-full flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out",
-					isPhone ? "max-w-none" : "max-w-md",
+					"fixed top-0 right-0 z-50 flex h-[100dvh] w-full max-w-none flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out sm:max-w-md",
 					open ? "translate-x-0" : "translate-x-full",
 				)}
 				style={{

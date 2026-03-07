@@ -1,4 +1,5 @@
 import { ShoppingBag } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { DashedBorderBox } from "@/components/ui/DashedBorderBox";
 
@@ -20,19 +21,19 @@ export function ShopCTA() {
 								your firearms in top condition.
 							</p>
 							<div className="mt-8 flex flex-col gap-4 sm:flex-row">
-								<a
+								<Link
 									href="/shop"
 									className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-vfw-red-600 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:bg-vfw-red-700 sm:w-auto"
 								>
 									<ShoppingBag className="h-5 w-5" />
 									Shop Now
-								</a>
-								<a
+								</Link>
+								<Link
 									href="/shop"
 									className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:border-white/60 hover:bg-white/10 sm:w-auto"
 								>
 									View All Categories
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="lg:col-span-2">

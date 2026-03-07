@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components/shop/ProductDetail";
 import { createMetadata } from "@/lib/metadata";
-import { CATEGORIES, getProductBySlug, getRelatedProducts, PRODUCTS } from "@/lib/products";
+import {
+	getCategoryBySlug,
+	getProductByCategoryAndSlug,
+	getRelatedProducts,
+	PRODUCTS,
+} from "@/lib/products";
 
 interface ProductPageProps {
 	params: Promise<{ category: string; slug: string }>;
@@ -16,11 +21,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-	const { slug } = await params;
-	const product = getProductBySlug(slug);
+	const { category: categorySlug, slug } = await params;
+	const product = getProductByCategoryAndSlug(categorySlug, slug);
 	if (!product) return {};
 
-	const category = CATEGORIES.find((c) => c.slug === product.category);
+	const category = getCategoryBySlug(product.category);
 	const categoryName = category?.name ?? product.category;
 
 	return createMetadata({
@@ -37,8 +42,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-	const { slug } = await params;
-	const product = getProductBySlug(slug);
+	const { category: categorySlug, slug } = await params;
+	const product = getProductByCategoryAndSlug(categorySlug, slug);
 
 	if (!product) {
 		notFound();

@@ -1,11 +1,11 @@
 "use client";
 
 import { X } from "lucide-react";
-import { useEffect } from "react";
+import Link from "next/link";
+import { useEffect, useEffectEvent } from "react";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
-import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { BUSINESS } from "@/lib/constants";
-import { cn, formatPhone } from "@/lib/utils";
+import { formatPhone } from "@/lib/utils";
 
 const NAV_LINKS = [
 	{ href: "/", label: "Home" },
@@ -15,20 +15,21 @@ const NAV_LINKS = [
 ];
 
 export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
-	const { isPhone } = useBreakpoint();
-
 	useBodyScrollLock(open);
+	const handleClose = useEffectEvent(() => {
+		onClose();
+	});
 
 	useEffect(() => {
 		if (!open) return;
 		const onKeyDown = (event: KeyboardEvent) => {
 			if (event.key === "Escape") {
-				onClose();
+				handleClose();
 			}
 		};
 		window.addEventListener("keydown", onKeyDown);
 		return () => window.removeEventListener("keydown", onKeyDown);
-	}, [open, onClose]);
+	}, [open]);
 
 	if (!open) return null;
 
@@ -46,10 +47,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 				aria-label="Close menu backdrop"
 			/>
 			<div
-				className={cn(
-					"fixed inset-y-0 right-0 flex h-[100dvh] w-full flex-col bg-white shadow-xl",
-					isPhone ? "max-w-none" : "max-w-sm",
-				)}
+				className="fixed inset-y-0 right-0 flex h-[100dvh] w-full max-w-none flex-col bg-white shadow-xl sm:max-w-sm"
 				style={{
 					paddingTop: "max(0px, var(--safe-area-top))",
 					paddingBottom: "max(0px, var(--safe-area-bottom))",
@@ -70,13 +68,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
 					<ul className="space-y-1">
 						{NAV_LINKS.map((link) => (
 							<li key={link.href}>
-								<a
+								<Link
 									href={link.href}
 									className="block rounded-lg px-4 py-3.5 text-lg font-medium text-charcoal transition-colors hover:bg-gray-100"
 									onClick={onClose}
 								>
 									{link.label}
-								</a>
+								</Link>
 							</li>
 						))}
 					</ul>

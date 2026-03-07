@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
-import { CATEGORIES } from "@/lib/products";
+import { getCategoryBySlug } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types";
 import { ProductImage } from "./ProductImage";
@@ -10,12 +10,12 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-	const category = CATEGORIES.find((c) => c.slug === product.category);
+	const category = getCategoryBySlug(product.category);
 	const categoryName = category?.name ?? product.category;
 	const productHref = `/shop/${product.category}/${product.slug}`;
 
 	return (
-		<div className="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
+		<div className="content-auto-card group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
 			<Link href={productHref}>
 				<ProductImage
 					product={product}

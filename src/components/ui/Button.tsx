@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline";
@@ -22,13 +23,18 @@ const sizeStyles: Record<ButtonSize, string> = {
 	lg: "px-6 py-3.5 text-base sm:px-8 sm:py-4 sm:text-lg",
 };
 
+function isInternalHref(href: string) {
+	return href.startsWith("/") && !href.startsWith("//");
+}
+
 export function Button({
 	variant = "primary",
 	size = "md",
 	className,
 	href,
+	type,
 	children,
-	...props
+	...buttonProps
 }: ButtonProps) {
 	const classes = cn(
 		"inline-flex min-h-[48px] items-center justify-center rounded-full text-center font-semibold uppercase leading-tight tracking-[0.18em] transition-colors duration-300 cursor-pointer sm:tracking-wider",
@@ -38,6 +44,14 @@ export function Button({
 	);
 
 	if (href) {
+		if (isInternalHref(href)) {
+			return (
+				<Link href={href} className={classes}>
+					{children}
+				</Link>
+			);
+		}
+
 		return (
 			<a href={href} className={classes}>
 				{children}
@@ -46,7 +60,7 @@ export function Button({
 	}
 
 	return (
-		<button className={classes} {...props}>
+		<button type={type ?? "button"} className={classes} {...buttonProps}>
 			{children}
 		</button>
 	);

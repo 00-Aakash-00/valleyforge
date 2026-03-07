@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
 export default function NotFound() {
@@ -11,12 +12,12 @@ export default function NotFound() {
 				<p className="mt-4 text-lg text-slate-500">
 					The page you&apos;re looking for doesn&apos;t exist or has been moved.
 				</p>
-				<a
+				<Link
 					href="/"
 					className="mt-8 inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-vfw-red-600 px-8 py-3 font-semibold uppercase tracking-wider text-white transition-colors hover:bg-vfw-red-700 sm:w-auto"
 				>
 					Return to Homepage
-				</a>
+				</Link>
 			</Container>
 		</div>
 	);

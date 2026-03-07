@@ -5,10 +5,13 @@ import { useState } from "react";
 import { CartProvider } from "./CartProvider";
 import { ShopCartButton } from "./ShopCartButton";
 
-const CartDrawer = dynamic(
-	() => import("./CartDrawer").then((mod) => ({ default: mod.CartDrawer })),
-	{ ssr: false },
-);
+const loadCartDrawer = () => import("./CartDrawer").then((mod) => ({ default: mod.CartDrawer }));
+
+const CartDrawer = dynamic(loadCartDrawer, { ssr: false });
+
+function preloadCartDrawer() {
+	void loadCartDrawer();
+}
 
 export function ShopLayoutClient({ children }: { children: React.ReactNode }) {
 	const [cartOpen, setCartOpen] = useState(false);
@@ -16,7 +19,7 @@ export function ShopLayoutClient({ children }: { children: React.ReactNode }) {
 	return (
 		<CartProvider>
 			{children}
-			<ShopCartButton onClick={() => setCartOpen(true)} />
+			<ShopCartButton onClick={() => setCartOpen(true)} onIntent={preloadCartDrawer} />
 			<CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 		</CartProvider>
 	);
