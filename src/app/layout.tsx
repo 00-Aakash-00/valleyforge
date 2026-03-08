@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
@@ -75,6 +76,7 @@ export default function RootLayout({
 						__html: JSON.stringify(getLocalBusinessJsonLd()),
 					}}
 				/>
+				<Analytics />
 			</body>
 		</html>
 	);
