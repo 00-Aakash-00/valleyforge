@@ -1,5 +1,6 @@
 import { CheckCircle, Droplets } from "lucide-react";
 import Image from "next/image";
+import { FaqSection } from "@/components/services/FaqSection";
 import { ServiceBottomCTA } from "@/components/services/ServiceBottomCTA";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ReviewCard } from "@/components/shared/ReviewCard";
@@ -157,34 +158,9 @@ export default function CleaningServicesPage() {
 				</section>
 			</ScrollReveal>
 
-			{/* When to Clean */}
+			{/* When to Clean – FAQ */}
 			<ScrollReveal>
-				<section className="bg-white-warm py-16 sm:py-20 md:py-28">
-					<Container>
-						<SectionHeading overline="FIREARM CARE" title="When Should You Clean Your Firearm?" />
-						<div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
-							{[
-								{
-									title: "After Every Range Day",
-									text: "Manufacturers recommend cleaning your firearm after every use. Carbon and fouling build up with each round fired.",
-								},
-								{
-									title: "Every 500-1,000 Rounds",
-									text: "At minimum, a thorough cleaning every 500-1,000 rounds keeps your firearm functioning reliably and prevents excessive wear.",
-								},
-								{
-									title: "Before Long-Term Storage",
-									text: "Always clean and properly lubricate your firearm before storing. This prevents rust, corrosion, and degradation of components.",
-								},
-							].map((item) => (
-								<div key={item.title} className="rounded-lg bg-white p-6 shadow-sm">
-									<h3 className="font-heading text-lg font-bold text-black">{item.title}</h3>
-									<p className="mt-2 text-sm leading-relaxed text-slate-700">{item.text}</p>
-								</div>
-							))}
-						</div>
-					</Container>
-				</section>
+				<FaqSection />
 			</ScrollReveal>
 
 			{/* Reviews */}

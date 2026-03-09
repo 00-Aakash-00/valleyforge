@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SocialLinks } from "@/components/shared/SocialLinks";
-import { BUSINESS, SITE_NAME, TAGLINE } from "@/lib/constants";
+import { BUSINESS, TAGLINE } from "@/lib/constants";
 
 const SERVICE_LINKS = [
 	{ href: "/cleaning-services", label: "Basic Cleaning" },
@@ -75,12 +76,12 @@ export function Footer() {
 					<div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
 				</div>
 				<div
-					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-[14%] select-none px-4 text-center"
+					className="pointer-events-none absolute inset-x-0 bottom-0 z-10 select-none px-4 pb-2 text-center"
 					aria-hidden="true"
 				>
-					<p className={`leading-[0.88] ${GIANT_TEXT_CLASSES}`}>
-						<span className="block text-[15vw]">Valley Forge</span>
-						<span className="block text-[13vw]">Weaponry</span>
+					<p className={`whitespace-nowrap leading-[0.88] ${GIANT_TEXT_CLASSES}`}>
+						<span className="block text-[10vw]">Valley Forge</span>
+						<span className="block text-[9vw]">Weaponry</span>
 					</p>
 				</div>
 			</div>
@@ -101,10 +102,16 @@ export function Footer() {
 				</div>
 			</div>
 
-			{/* Section 2: Footer Content */}
+			{/* Section 2: Footer Content — Mobile */}
 			<div className="bg-white px-4 pt-16 pb-12 sm:hidden">
 				<div className="mx-auto max-w-7xl">
-					<h3 className="font-heading text-xl font-bold text-black">{SITE_NAME}</h3>
+					<Image
+						src="/images/logo.png"
+						alt="Valley Forge Weaponry"
+						width={140}
+						height={38}
+						className="h-8 w-auto"
+					/>
 					<p className="mt-2 max-w-xs text-sm italic text-gray-500">{TAGLINE}</p>
 					<SocialLinks className="mt-6" variant="outlined" />
 
@@ -119,11 +126,18 @@ export function Footer() {
 				</div>
 			</div>
 
+			{/* Section 2: Footer Content — Desktop */}
 			<div className="hidden bg-white px-4 pt-14 pb-12 sm:px-6 sm:pt-20 sm:block">
 				<div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 sm:gap-10 md:grid-cols-6">
 					{/* Brand Column */}
 					<div className="col-span-2">
-						<h3 className="font-heading text-xl font-bold text-black">{SITE_NAME}</h3>
+						<Image
+							src="/images/logo.png"
+							alt="Valley Forge Weaponry"
+							width={140}
+							height={38}
+							className="h-8 w-auto"
+						/>
 						<p className="mt-2 text-sm italic text-gray-500">{TAGLINE}</p>
 						<SocialLinks className="mt-6" variant="outlined" />
 					</div>
