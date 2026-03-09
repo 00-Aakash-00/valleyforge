@@ -9,6 +9,8 @@ import { BUSINESS } from "@/lib/constants";
 import { REVIEWS } from "@/lib/reviews";
 import type { Review } from "@/types";
 
+const MARQUEE_SPEED_PX_PER_SECOND = 30;
+
 function splitReviewsByRow(reviews: Review[]) {
 	const firstRow: Review[] = [];
 	const secondRow: Review[] = [];
@@ -64,6 +66,25 @@ function TestimonialCard({ review }: { review: Review }) {
 	);
 }
 
+function getSegmentWidth(container: HTMLDivElement, reviewsPerSegment: number) {
+	const items = Array.from(container.children) as HTMLElement[];
+	const firstItem = items[0];
+	const nextSegmentFirstItem = items[reviewsPerSegment];
+
+	if (firstItem && nextSegmentFirstItem) {
+		return nextSegmentFirstItem.offsetLeft - firstItem.offsetLeft;
+	}
+
+	const lastItemInSegment = items[Math.min(reviewsPerSegment, items.length) - 1];
+	if (!firstItem || !lastItemInSegment) {
+		return 0;
+	}
+
+	const styles = window.getComputedStyle(container);
+	const gap = Number.parseFloat(styles.columnGap || styles.gap || "0");
+	return lastItemInSegment.offsetLeft - firstItem.offsetLeft + lastItemInSegment.offsetWidth + gap;
+}
+
 function MarqueeRow({
 	reviews,
 	repeatedReviews,
@@ -83,6 +104,9 @@ function MarqueeRow({
 }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const rafRef = useRef<number>(0);
+	const positionRef = useRef(0);
+	const segmentWidthRef = useRef(0);
+	const lastTimestampRef = useRef(0);
 	const handlePause = useEffectEvent(() => {
 		onPause();
 	});
@@ -122,41 +146,81 @@ function MarqueeRow({
 		const el = scrollRef.current;
 		if (!el) return;
 
-		el.scrollLeft = el.scrollWidth / 3;
-	}, [reducedMotion]);
-
-	useEffect(() => {
-		if (reducedMotion) return;
-
-		const animate = () => {
-			const el = scrollRef.current;
-			if (!el) return;
-
-			const third = el.scrollWidth / 3;
-
-			if (direction === "left") {
-				el.scrollLeft += 0.5;
-				if (el.scrollLeft >= third * 2) {
-					el.scrollLeft = third;
-				}
-			} else {
-				el.scrollLeft -= 0.5;
-				if (el.scrollLeft <= 0) {
-					el.scrollLeft = third;
-				}
-			}
-
-			rafRef.current = requestAnimationFrame(animate);
+		const syncToMiddleCopy = () => {
+			const segmentWidth = getSegmentWidth(el, reviews.length);
+			segmentWidthRef.current = segmentWidth;
+			positionRef.current = segmentWidth;
+			lastTimestampRef.current = 0;
+			el.scrollLeft = Math.round(positionRef.current);
 		};
 
-		if (!isPaused) {
-			rafRef.current = requestAnimationFrame(animate);
+		syncToMiddleCopy();
+
+		const resizeObserver = new ResizeObserver(() => {
+			syncToMiddleCopy();
+		});
+
+		resizeObserver.observe(el);
+		for (const child of Array.from(el.children)) {
+			resizeObserver.observe(child);
 		}
 
 		return () => {
-			if (rafRef.current) {
-				cancelAnimationFrame(rafRef.current);
+			resizeObserver.disconnect();
+		};
+	}, [reducedMotion, reviews.length]);
+
+	useEffect(() => {
+		if (rafRef.current) {
+			cancelAnimationFrame(rafRef.current);
+			rafRef.current = 0;
+		}
+
+		if (reducedMotion || isPaused) {
+			lastTimestampRef.current = 0;
+			return;
+		}
+
+		const animate = (timestamp: number) => {
+			const el = scrollRef.current;
+			const segmentWidth = segmentWidthRef.current;
+			if (!el || segmentWidth === 0) {
+				rafRef.current = requestAnimationFrame(animate);
+				return;
 			}
+
+			if (lastTimestampRef.current === 0) {
+				lastTimestampRef.current = timestamp;
+				rafRef.current = requestAnimationFrame(animate);
+				return;
+			}
+
+			const elapsed = timestamp - lastTimestampRef.current;
+			const distance = (elapsed / 1000) * MARQUEE_SPEED_PX_PER_SECOND;
+			lastTimestampRef.current = timestamp;
+
+			if (direction === "left") {
+				positionRef.current += distance;
+				if (positionRef.current >= segmentWidth * 2) {
+					positionRef.current -= segmentWidth;
+				}
+			} else {
+				positionRef.current -= distance;
+				if (positionRef.current <= 0) {
+					positionRef.current += segmentWidth;
+				}
+			}
+
+			el.scrollLeft = Math.round(positionRef.current);
+			rafRef.current = requestAnimationFrame(animate);
+		};
+
+		rafRef.current = requestAnimationFrame(animate);
+
+		return () => {
+			cancelAnimationFrame(rafRef.current);
+			rafRef.current = 0;
+			lastTimestampRef.current = 0;
 		};
 	}, [direction, isPaused, reducedMotion]);
 
